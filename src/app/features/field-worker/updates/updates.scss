@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  header {
+    margin-bottom: 24px;
+    h1 {
+      font-family: 'Space Grotesk Variable', sans-serif;
+    }
+    small {
+      color: var(--muted);
+    }
+  }
+  article {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    p {
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+    a {
+      color: #2563eb;
+    }
+  }
+}

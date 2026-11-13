@@ -1,0 +1,170 @@
+<app-page-header
+  title="User Management & Demo Accounts"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Inspect member, field worker, and admin directories with reviewable account actions and pagination."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="kpis">
+    <app-stat-card
+      label="Member directory"
+      [value]="summary().members.toString()"
+      icon="user"
+    /><app-stat-card
+      label="Field worker directory"
+      [value]="summary().staff.toString()"
+      icon="hard-hat"
+      tone="amber"
+    /><app-stat-card
+      label="Admin accounts"
+      [value]="summary().admins.toString()"
+      icon="shield-quarter"
+    />
+  </section>
+  <div class="workspace-grid directory-grid">
+    <section class="panel">
+      <h2>
+        Demo account directory <span class="badge">{{ summary().total }}</span>
+      </h2>
+      <div class="toolbar">
+        <input
+          aria-label="Search accounts"
+          placeholder="Search name, email, or municipality"
+          [value]="query()"
+          (input)="changeFilter('query', $any($event.target).value)"
+        /><select
+          aria-label="Account role"
+          [ngModel]="role()"
+          (change)="changeFilter('role', $any($event.target).value)"
+        >
+          <option>All</option>
+          <option value="member">Members</option>
+          <option value="field-worker">Field Workers</option>
+          <option value="admin">Admins</option></select
+        ><select
+          aria-label="Account status"
+          [ngModel]="status()"
+          (change)="changeFilter('status', $any($event.target).value)"
+        >
+          <option>All</option>
+          <option>Active</option>
+          <option>Disabled</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name / email</th>
+              <th>Role</th>
+              <th>Municipality</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of rows(); track item.id) {
+              <tr>
+                <td>
+                  <b>{{ item.name }}</b
+                  ><small>{{ item.email }}</small>
+                </td>
+                <td>
+                  <span class="badge">{{ item.role }}</span>
+                </td>
+                <td>{{ item.municipality }}</td>
+                <td>
+                  <span class="badge" [class.critical]="!item.active">{{
+                    item.active ? 'Active' : 'Disabled'
+                  }}</span>
+                </td>
+                <td>
+                  <button type="button" (click)="selectedId.set(item.id)">View account</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5">No accounts match your filters.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <app-pagination
+        [page]="pager.result().page"
+        [pageSize]="pager.result().pageSize"
+        [total]="pager.result().totalItems"
+        (changed)="pager.change($event)"
+      />
+    </section>
+    <aside class="panel">
+      <h2>User detail drawer</h2>
+      @if (selected(); as user) {
+        <span class="badge">{{ user.role }}</span>
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.email }}</p>
+        <div class="metadata">
+          <div>
+            <small>Account identifier</small><b>{{ user.id }}</b>
+          </div>
+          <div>
+            <small>Status</small><b>{{ user.active ? 'Active' : 'Disabled' }}</b>
+          </div>
+          <div>
+            <small>Municipality</small><b>{{ user.municipality }}</b>
+          </div>
+          <div>
+            <small>Joined</small><b>{{ user.joined }}</b>
+          </div>
+        </div>
+        <label class="field"
+          >Demo directory role<select #newRole class="control" [ngModel]="user.role">
+            <option value="member">Member</option>
+            <option value="field-worker">Field Worker</option>
+            <option value="admin">Admin</option>
+          </select></label
+        >
+        <div class="actions">
+          <button class="action" type="button" (click)="requestRole(newRole.value)">
+            Review role change</button
+          ><button class="action secondary" type="button" (click)="requestStatus()">
+            {{ user.active ? 'Disable demo account' : 'Enable demo account' }}
+          </button>
+        </div>
+      } @else {
+        <p>Select an account to review its role, status, and details.</p>
+      }
+      <div class="notice">
+        Directory management is simulated. These actions do not implement server authorization or
+        change the fixed role of the three development login fixtures.
+      </div>
+      @if (message()) {
+        <p class="success" role="status">{{ message() }}</p>
+      }
+    </aside>
+  </div>
+  @if (pending(); as user) {
+    <div class="dialog-backdrop">
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="account-confirm">
+        <h2 id="account-confirm">Confirm demo account change</h2>
+        <p>{{ user.name }} ({{ user.email }})</p>
+        <div class="metadata">
+          <div>
+            <small>Proposed role</small><b>{{ user.role }}</b>
+          </div>
+          <div>
+            <small>Proposed status</small><b>{{ user.active ? 'Active' : 'Disabled' }}</b>
+          </div>
+        </div>
+        <p>The change affects this prototype directory and is recorded in the audit trail.</p>
+        <div class="actions">
+          <button class="action secondary" type="button" (click)="pending.set(null)">Cancel</button
+          ><button class="action" type="button" (click)="confirm()">Confirm change</button>
+        </div>
+      </section>
+    </div>
+  }
+</app-data-state>

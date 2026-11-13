@@ -1,0 +1,70 @@
+<div class="filters">
+  @if (dates) {
+    <label
+      >From<input
+        type="date"
+        [value]="value.dateFrom"
+        (change)="change('dateFrom', $any($event.target).value)" /></label
+    ><label
+      >Through<input
+        type="date"
+        [value]="value.dateTo"
+        (change)="change('dateTo', $any($event.target).value)"
+    /></label>
+  }
+  <label
+    >Municipality<select
+      [ngModel]="value.municipality"
+      (change)="change('municipality', $any($event.target).value)"
+    >
+      <option value="All">All municipalities</option>
+      @for (item of municipalities; track item) {
+        <option>{{ item }}</option>
+      }
+    </select></label
+  ><label
+    >Barangay<select
+      [ngModel]="value.barangay"
+      (change)="change('barangay', $any($event.target).value)"
+    >
+      <option value="All">All barangays</option>
+      @for (item of barangays; track item.code) {
+        <option [value]="item.code">{{ item.barangay }} · {{ item.municipality }}</option>
+      }
+    </select></label
+  ><label
+    >Category<select
+      [ngModel]="value.category"
+      (change)="change('category', $any($event.target).value)"
+    >
+      <option value="All">All categories</option>
+      @for (item of categories; track item) {
+        <option>{{ item }}</option>
+      }
+    </select></label
+  ><label
+    >Priority<select
+      [ngModel]="value.priority"
+      (change)="change('priority', $any($event.target).value)"
+    >
+      <option value="All">All priorities</option>
+      <option>Routine</option>
+      <option>Urgent</option>
+      <option>Critical</option>
+    </select></label
+  >
+  @if (statuses.length) {
+    <label
+      >Status<select
+        [ngModel]="value.status"
+        (change)="change('status', $any($event.target).value)"
+      >
+        <option value="All">All statuses</option>
+        @for (item of statuses; track item) {
+          <option>{{ item }}</option>
+        }
+      </select></label
+    >
+  }
+  <button type="button" (click)="clear()">Clear filters</button>
+</div>

@@ -1,0 +1,41 @@
+@mixin shell {
+  :host {
+    display: block;
+  }
+  .mobile-app,
+  .field-app {
+    width: min(100%, 540px);
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--canvas);
+    color: var(--ink);
+    box-shadow: var(--shadow-card);
+    main {
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 var(--mobile-gutter, 16px) 24px;
+      overscroll-behavior: contain;
+    }
+    &.map-mode main {
+      display: flex;
+      overflow: hidden;
+      padding: 0;
+    }
+  }
+  @media (min-width: 768px) and (min-height: 600px) {
+    .mobile-app,
+    .field-app {
+      height: calc(100dvh - 48px);
+      margin-block: 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+    }
+  }
+}

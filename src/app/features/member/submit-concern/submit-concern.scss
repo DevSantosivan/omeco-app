@@ -1,0 +1,205 @@
+@use '../../../../styles/tokens' as *;
+:host {
+  display: block;
+  form {
+    padding: 17px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 15px;
+  }
+  .steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin: 0 0 22px;
+    span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: $muted;
+      font-size: 11px;
+      &.current {
+        color: $blue;
+      }
+    }
+    b {
+      font-weight: 600;
+    }
+    i {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+  }
+  label {
+    display: block;
+    margin: 15px 0;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 12px;
+    input,
+    select,
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      margin-top: 7px;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+      color: var(--ink);
+      font: 400 13px $font-body;
+      &:focus {
+        outline: 2px solid #2563eb33;
+        border-color: $blue;
+      }
+    }
+    textarea {
+      resize: vertical;
+    }
+    input[type='file'] {
+      padding: 10px;
+      height: auto;
+    }
+    small {
+      display: block;
+      margin-top: 6px;
+      color: #dc2626;
+      font-weight: 400;
+      font-size: 10px;
+    }
+  }
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .location {
+    min-height: 43px;
+    padding: 0 13px;
+    border: 1px solid #bfdbfe;
+    border-radius: 9px;
+    color: $blue;
+    background: #eff6ff;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .upload small {
+    color: $muted;
+  }
+  .previews {
+    display: flex;
+    gap: 8px;
+    img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+  .advisory {
+    margin: 17px 0;
+    padding: 11px;
+    border-radius: 8px;
+    background: #fffbeb;
+    color: #8a5b00;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .submit {
+    width: 100%;
+    min-height: 48px;
+    border: 0;
+    border-radius: 9px;
+    color: white;
+    background: $blue;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+      background: $hover;
+    }
+  }
+}
+@media (max-width: 380px) {
+  :host .two {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  :host .steps b {
+    font-size: 10px;
+  }
+}
+
+:host {
+  > app-page-header {
+    display: block;
+    margin: 0 -18px;
+    padding: 20px 24px 34px;
+    background: #102b50;
+    color: white;
+  }
+  form {
+    position: relative;
+    margin-top: -18px;
+    border-radius: 20px 20px 14px 14px;
+    padding: 20px 17px;
+    box-shadow: 0 3px 12px #102b5009;
+    .form-section-title {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 700;
+      font-size: 15px;
+      color: #2563eb;
+      margin-bottom: 16px;
+    }
+    label {
+      font-size: 13px;
+      margin: 17px 0;
+    }
+    input,
+    select,
+    textarea {
+      font-size: 14px;
+      min-height: 48px;
+      border-color: #c5d6ed;
+    }
+    textarea {
+      min-height: 120px;
+    }
+    .submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      font-size: 16px;
+    }
+  }
+}
+:host > app-page-header {
+  --color-text: #fff;
+  --color-muted: #c0d3ed;
+}
+@media (max-width: 430px) {
+  :host form .two {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.wizard {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  span {
+    color: var(--muted);
+  }
+}

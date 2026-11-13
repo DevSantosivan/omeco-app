@@ -1,0 +1,123 @@
+<app-page-header
+  title="GIS Incident Command Map"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Inspect available barangay boundaries, connected demo incidents, and explicitly illustrative crew connections."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><app-incident-filters
+    [value]="filters()"
+    [municipalities]="store.municipalities"
+    [places]="store.geography"
+    [categories]="store.categories()"
+    (changed)="filters.set($event); selectedId.set(''); boundary.set(null)"
+  />
+  <section class="kpis">
+    <app-stat-card
+      label="Filtered incidents"
+      [value]="summary().incidents.toString()"
+      icon="map"
+    /><app-stat-card
+      label="Affected households"
+      [value]="summary().households.toString()"
+      icon="group"
+    /><app-stat-card
+      label="No GPS coordinates"
+      [value]="summary().missingCoordinates.toString()"
+      detail="Unlocated reports are not plotted"
+      icon="error"
+      tone="amber"
+    />
+  </section>
+  <div class="workspace-grid map-workspace">
+    <section>
+      <div class="map-panel">
+        <app-map-view
+          [cases]="rows()"
+          [municipality]="filters().municipality"
+          [barangay]="filters().barangay"
+          [connectionId]="selectedId()"
+          (selected)="select($event.id)"
+          (boundarySelected)="boundary.set($event)"
+        />
+      </div>
+      <p class="section-note">
+        Available dataset: 139 barangays across 9 OMECO-listed mainland municipalities. Source
+        metadata: 2023. This is dataset coverage, not a verified current OMECO service-territory
+        boundary. Open Layers to toggle boundary, incident, simulated crew, and illustrative
+        connection layers.
+      </p>
+      @if (boundary(); as area) {
+        <section class="panel">
+          <h2>Selected boundary</h2>
+          <b>{{ area.barangay }}, {{ area.municipality }}</b>
+          <p>PSGC identifier in supplied dataset: {{ area.code }}</p>
+          <p>No official boundary edits or inferred administrative polygons are generated.</p>
+        </section>
+      }
+    </section>
+    <aside>
+      <section class="panel">
+        <h2>Incident details</h2>
+        @if (selected(); as item) {
+          <span class="badge" [class]="item.priority.toLowerCase()">{{ item.priority }}</span>
+          <h3>{{ item.id }} · {{ item.category }}</h3>
+          <p>{{ item.description }}</p>
+          <div class="metadata">
+            <div>
+              <small>Location</small><b>{{ item.location }}</b>
+            </div>
+            <div>
+              <small>Assigned crew</small><b>{{ item.assignedCrew || 'Awaiting approval' }}</b>
+            </div>
+          </div>
+          <p class="mono">
+            GeoJSON [longitude, latitude]: {{ item.coordinates?.join(', ') || 'Not geotagged' }}
+          </p>
+          <a class="action" [routerLink]="['/admin/complaints', item.id]">Open complaint detail</a>
+        } @else {
+          <p>
+            Select an incident marker or queue record. Cluster bubbles expand nearby reports when
+            clicked.
+          </p>
+        }
+      </section>
+      <section class="panel">
+        <h2>
+          Incident queue <span class="badge">{{ rows().length }}</span>
+        </h2>
+        <div class="queue">
+          @for (item of pager.result().items; track item.id) {
+            <button
+              type="button"
+              class="queue-item"
+              [class.selected]="selectedId() === item.id"
+              (click)="select(item.id)"
+            >
+              <div class="row">
+                <b>{{ item.id }}</b
+                ><span class="badge" [class]="item.priority.toLowerCase()">{{
+                  item.priority
+                }}</span>
+              </div>
+              <p>{{ item.category }}</p>
+              <small>{{ item.location }}</small>
+            </button>
+          } @empty {
+            <p class="empty-inline">No incidents match these map filters.</p>
+          }
+        </div>
+      </section>
+    </aside>
+  </div></app-data-state
+>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

@@ -1,0 +1,58 @@
+@use '../../../../styles/tokens' as *;
+:host {
+  display: block;
+  min-width: 0;
+}
+.stat-card {
+  height: 100%;
+  min-height: 116px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-md;
+  box-shadow: var(--shadow-card);
+  .stat-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--color-muted);
+    font-size: 11px;
+  }
+  .stat-card__icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    font-style: normal;
+    font-size: 15px;
+    &.stat-card__icon--blue {
+      background: #eaf1ff;
+      color: #2563eb;
+    }
+    &.stat-card__icon--green {
+      background: #e7f7f0;
+      color: #16875d;
+    }
+    &.stat-card__icon--amber {
+      background: #fff4df;
+      color: #af7410;
+    }
+    &.stat-card__icon--red {
+      background: #fff0ef;
+      color: #c93b36;
+    }
+  }
+  strong {
+    display: block;
+    color: var(--color-text);
+    font: 600 26px $font-display;
+    margin: 9px 0 4px;
+  }
+  small {
+    display: block;
+    color: var(--color-muted);
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,12 @@
+<article class="stat-card">
+  <div class="stat-card__top">
+    <span>{{ label }}</span
+    ><i [class]="'stat-card__icon stat-card__icon--' + tone" aria-hidden="true"
+      ><app-icon [name]="icon" [size]="24"
+    /></i>
+  </div>
+  <strong>{{ value }}</strong>
+  @if (detail) {
+    <small>{{ detail }}</small>
+  }
+</article>

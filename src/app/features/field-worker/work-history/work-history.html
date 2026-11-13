@@ -1,0 +1,21 @@
+<header>
+  <small>FIELD OPERATIONS · DEMO</small>
+  <h1>Completed work</h1>
+</header>
+@for (item of pager.result().items; track item.id) {
+  <article>
+    <a [routerLink]="['/field-worker/assignments', item.id]"
+      ><b>{{ item.id }} · {{ item.category }}</b></a
+    >
+    <p>{{ item.location }}</p>
+    <p>{{ item.status }} · {{ item.repairNotes || 'Seeded restoration record' }}</p>
+  </article>
+} @empty {
+  <article>No completed work yet.</article>
+}
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

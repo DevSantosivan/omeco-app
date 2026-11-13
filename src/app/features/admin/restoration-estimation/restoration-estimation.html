@@ -1,0 +1,142 @@
+<app-page-header
+  title="Restoration Time Estimation"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Inspect transparent demonstration factors, compare historical repair durations, and record estimate reviews."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="panel toolbar">
+    <label class="field"
+      >Select incident<select
+        class="control"
+        [ngModel]="selectedId()"
+        (change)="selectedId.set($any($event.target).value); message.set('')"
+      >
+        @for (item of store.incidents(); track item.id) {
+          <option [value]="item.id">
+            {{ item.id }} · {{ item.category }} · {{ item.location }}
+          </option>
+        }
+      </select></label
+    >
+  </section>
+  @if (selected(); as item) {
+    <section class="kpis">
+      <app-stat-card
+        label="Estimated duration"
+        [value]="summary().estimatedHours + ' h'"
+        detail="SIMULATED · not a trained model"
+        icon="time-five"
+      /><app-stat-card
+        label="Incident priority"
+        [value]="item.priority"
+        [detail]="item.category"
+        icon="error"
+        tone="amber"
+      /><app-stat-card
+        label="Crew assignment"
+        [value]="item.assignedCrew || 'Unassigned'"
+        [detail]="item.status"
+        icon="group"
+      />
+    </section>
+    <div class="workspace-grid">
+      <section class="panel">
+        <h2>Restoration scenario</h2>
+        <div class="big-value">
+          {{ summary().estimatedHours }} <small>hours · illustrative duration</small>
+        </div>
+        <p>{{ item.description }}</p>
+        <div class="metadata">
+          <div>
+            <small>Barangay / municipality</small><b>{{ item.location }}</b>
+          </div>
+          <div>
+            <small>Household impact</small><b>{{ item.households }} households</b>
+          </div>
+          <div>
+            <small>Repair progress</small><b>{{ item.status }}</b>
+          </div>
+          <div>
+            <small>Actual repair duration</small
+            ><b>{{
+              item.actualRepairHours !== undefined
+                ? item.actualRepairHours + ' h · seeded history'
+                : 'Not yet available'
+            }}</b>
+          </div>
+        </div>
+        <h3>Simulated estimation factors</h3>
+        <app-chart
+          kind="horizontalBar"
+          title="Illustrative restoration factors"
+          unit="hours"
+          [labels]="factorLabels"
+          [datasets]="factorDatasets"
+        />
+        <div class="notice">
+          This estimate sums transparent fictional factors. It is not a trained restoration model,
+          service commitment, or verified ETA. Crew travel is not included.
+        </div>
+        <button class="action" type="button" (click)="record()">Record estimate review</button>
+        @if (message()) {
+          <p class="success" role="status">{{ message() }}</p>
+        }
+      </section>
+      <section class="panel">
+        <h2>Estimated versus actual duration</h2>
+        <app-mini-chart
+          [points]="estimatedPoints()"
+          title="Illustrative estimates for resolved sample incidents"
+          unit="hours"
+        /><app-mini-chart
+          [points]="actualPoints()"
+          title="Seeded actual completion durations · simulated"
+          unit="hours"
+          color="#16a36a"
+        />
+        <p>
+          Blue: estimated hours. Green: seeded completion hours. These comparisons are not measured
+          model evaluation metrics.
+        </p>
+      </section>
+    </div>
+  }
+  <section class="panel">
+    <h2>Restoration history</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Concern</th>
+            <th>Reported · UTC</th>
+            <th>Estimated hours</th>
+            <th>Seeded completion hours</th>
+            <th>Record type</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of pager.result().items; track item.incidentId) {
+            <tr>
+              <td>{{ item.incidentId }}</td>
+              <td>{{ item.timestamp | date: 'mediumDate' }}</td>
+              <td>{{ item.estimatedHours }}</td>
+              <td>{{ item.actualHours === null ? 'Pending' : item.actualHours }}</td>
+              <td>Simulated historical / estimated</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section></app-data-state
+>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

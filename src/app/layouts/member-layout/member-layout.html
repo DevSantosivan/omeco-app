@@ -1,0 +1,8 @@
+<app-mobile-shell
+  roleLabel="Member App"
+  homeLink="/member/home"
+  profileLink="/member/profile"
+  [nav]="nav"
+  [initials]="auth.session()?.name?.slice(0, 1) || 'O'"
+  ><router-outlet
+/></app-mobile-shell>

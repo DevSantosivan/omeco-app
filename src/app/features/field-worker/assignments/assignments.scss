@@ -1,0 +1,76 @@
+:host {
+  display: block;
+}
+header small {
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 700;
+}
+header h1 {
+  font-size: 22px;
+}
+header p {
+  color: var(--secondary);
+  font-size: 12px;
+}
+.item {
+  display: block;
+  margin: 11px 0;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+}
+.item div {
+  display: flex;
+  justify-content: space-between;
+}
+.item div span {
+  font-size: 10px;
+  color: #2563eb;
+}
+.item div b,
+.item footer {
+  color: var(--secondary);
+  font-size: 10px;
+}
+.item h2 {
+  font-size: 15px;
+  margin: 12px 0;
+}
+.item p {
+  color: var(--secondary);
+  font-size: 11px;
+}
+.item footer {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.item strong {
+  display: block;
+  color: #2563eb;
+  font-size: 12px;
+}
+
+.filters {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+  label {
+    display: grid;
+    gap: 6px;
+    font-size: 12px;
+  }
+  input,
+  select {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 10px;
+  }
+}

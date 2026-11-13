@@ -1,0 +1,50 @@
+@if (loading()) {
+  <p role="status" aria-busy="true">Loading records…</p>
+} @else if (error()) {
+  <p role="alert">{{ error() }} <button (click)="retry.emit()">Retry</button></p>
+} @else {
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          @for (column of columns(); track column.key) {
+            <th scope="col">
+              <button [disabled]="!column.sortable" (click)="sort(column)">
+                {{ column.label }}
+              </button>
+            </th>
+          }
+          @if (actions().length) {
+            <th>Actions</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of data().items; track row.id) {
+          <tr>
+            @for (column of columns(); track column.key) {
+              <td [attr.data-label]="column.label">{{ row[column.key] }}</td>
+            }
+            @if (actions().length) {
+              <td>
+                @for (name of actions(); track name) {
+                  <button (click)="action.emit({ action: name, row })">{{ name }}</button>
+                }
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td [attr.colspan]="columns().length + 1">No records match these filters.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <app-pagination
+    [page]="data().page"
+    [pageSize]="data().pageSize"
+    [total]="data().totalItems"
+    (changed)="request($event)"
+  />
+}

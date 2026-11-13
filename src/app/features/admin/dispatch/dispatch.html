@@ -1,0 +1,153 @@
+<app-page-header
+  title="Crew Dispatch & Approval"
+  eyebrow="FIELD RESPONSE"
+  description="Review crew expertise and availability before explicitly approving an assignment."
+/>
+<div class="notice">
+  AI-style suggestions are simulated. No crew is assigned automatically. Crew positions are
+  fictional; no live GPS or road routing service is connected.
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="kpis">
+    <app-stat-card
+      label="Awaiting approval"
+      [value]="summary().pending.toString()"
+      icon="send"
+      tone="amber"
+    /><app-stat-card
+      label="Available crews"
+      [value]="summary().available.toString()"
+      icon="group"
+      tone="green"
+    /><app-stat-card
+      label="Assigned incidents"
+      [value]="summary().assigned.toString()"
+      icon="file"
+    />
+  </section>
+  @if (message()) {
+    <p class="success" role="status">{{ message() }}</p>
+  }
+  <div class="workspace-grid">
+    <section class="panel">
+      <h2>Dispatch queue</h2>
+      <div class="queue">
+        @for (item of pager.result().items; track item.id) {
+          <button
+            class="queue-item"
+            type="button"
+            [class.selected]="selected()?.id === item.id"
+            (click)="selectedId.set(item.id); crewId.set('')"
+          >
+            <div class="row">
+              <b>{{ item.id }} · {{ item.category }}</b
+              ><span class="badge" [class]="item.priority.toLowerCase()">{{ item.priority }}</span>
+            </div>
+            <p>{{ item.location }}</p>
+            <small>{{ item.households }} households · {{ item.status }}</small>
+          </button>
+        } @empty {
+          <p class="empty-inline">All simulated concerns have a crew assignment.</p>
+        }
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Approval workspace</h2>
+      @if (selected(); as item) {
+        <h3>{{ item.id }} · {{ item.category }}</h3>
+        <p>{{ item.description }}</p>
+        <label class="field"
+          >Crew recommendation review<select
+            class="control"
+            [ngModel]="crewId()"
+            (change)="crewId.set($any($event.target).value)"
+          >
+            <option value="">Choose a crew after review</option>
+            @for (crew of crews(); track crew.id) {
+              <option [value]="crew.id" [disabled]="!crew.available">
+                {{ crew.name }} · {{ crew.expertise }} ·
+                {{ crew.available ? 'Available' : 'On assignment' }}
+              </option>
+            }
+          </select></label
+        >
+        @if (selectedCrew(); as crew) {
+          <div class="metadata">
+            <div>
+              <small>Technical expertise</small><b>{{ crew.expertise }}</b>
+            </div>
+            <div>
+              <small>Availability</small><b>{{ crew.available ? 'Available' : 'On assignment' }}</b>
+            </div>
+            <div>
+              <small>Simulated crew position</small><b>{{ crew.municipality }}</b>
+            </div>
+            <div><small>Travel estimate</small><b>Unavailable · no road routing</b></div>
+          </div>
+        }
+        <div class="notice">
+          The optional connection layer is a straight line for context only: Illustrative connection
+          — not a road route. No invented driving distance or travel ETA is displayed.
+        </div>
+        <div class="actions">
+          <button
+            class="action"
+            type="button"
+            [disabled]="!selectedCrew()?.available"
+            (click)="pending.set(true)"
+          >
+            <app-icon name="send" [size]="18" /> Review dispatch approval</button
+          ><a class="action secondary" [routerLink]="['/admin/complaints', item.id]"
+            >Inspect concern</a
+          >
+        </div>
+      } @else {
+        <p>Select an unassigned incident from the queue.</p>
+      }
+    </section>
+  </div>
+  <div class="two-columns">
+    <section class="panel">
+      <h2>Incident and crew map</h2>
+      <div class="map-panel">
+        <app-map-view [cases]="connections()" [connectionId]="selected()?.id || ''" />
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Crew availability & expertise</h2>
+      @for (crew of crews(); track crew.id) {
+        <article class="history-item">
+          <b
+            >{{ crew.name }}
+            <span class="badge">{{ crew.available ? 'Available' : 'On assignment' }}</span></b
+          >
+          <p>{{ crew.expertise }} · {{ crew.municipality }}</p>
+          <small>Simulated team location, not live tracking.</small>
+        </article>
+      }
+    </section>
+  </div>
+  @if (pending() && selected(); as item) {
+    <div class="dialog-backdrop">
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dispatch-confirm">
+        <h2 id="dispatch-confirm">Approve crew dispatch?</h2>
+        <p>{{ item.id }} · {{ item.category }}</p>
+        <p>
+          Assign {{ selectedCrew()?.name }} after reviewing expertise, availability, and incident
+          severity.
+        </p>
+        <div class="actions">
+          <button class="action secondary" type="button" (click)="pending.set(false)">Cancel</button
+          ><button class="action" type="button" (click)="approve()">Approve dispatch</button>
+        </div>
+      </section>
+    </div>
+  }
+</app-data-state>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

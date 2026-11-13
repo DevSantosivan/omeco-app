@@ -1,0 +1,126 @@
+<app-page-header
+  title="Report a concern"
+  eyebrow="MEMBER REPORT"
+  description="Share what happened. A cooperative staff member will review your report."
+/>
+<nav class="wizard" aria-label="Report steps">
+  <b>Step {{ step() }} of 3</b
+  ><span>{{
+    step() === 1
+      ? 'Describe your concern'
+      : step() === 2
+        ? 'Location and photos'
+        : 'Review your report'
+  }}</span>
+</nav>
+@if (submitted()) {
+  <section class="advisory" role="status">
+    <h2>Report received</h2>
+    <p>
+      Keep your reference: <b>{{ reference() }}</b>
+    </p>
+    <a routerLink="/member/reports">Track my report</a>
+  </section>
+} @else {
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    @if (step() === 1) {
+      <div class="form-section-title"><app-icon name="file" /> Concern Details</div>
+      <label
+        >Concern type<select formControlName="category">
+          <option value="">Choose a concern</option>
+          <option>Power interruption</option>
+          <option>Low voltage</option>
+          <option>Damaged power line</option>
+          <option>Transformer concern</option>
+          <option>Other service concern</option>
+        </select>
+        @if (form.controls.category.touched && form.controls.category.invalid) {
+          <small>Choose a concern type.</small>
+        }</label
+      ><label
+        >Describe the issue<textarea
+          rows="4"
+          formControlName="description"
+          placeholder="Tell us what you noticed. Filipino or English is okay."
+        ></textarea>
+        @if (form.controls.description.touched && form.controls.description.invalid) {
+          <small>Enter at least 12 characters.</small>
+        }</label
+      ><label
+        >Report language<select formControlName="language">
+          <option>Filipino</option>
+          <option>English</option>
+          <option>Mixed Filipino and English</option>
+        </select></label
+      >
+    }
+    @if (step() === 2) {
+      <div class="two">
+        <label
+          >Households affected<input type="number" min="1" formControlName="households" /></label
+        ><label
+          >Municipality<select
+            formControlName="location"
+            (change)="form.controls.barangay.setValue('')"
+          >
+            <option value="">Choose municipality</option>
+            @for (place of municipalities; track place) {
+              <option>{{ place }}</option>
+            }
+          </select></label
+        >
+      </div>
+      <label
+        >Barangay<select formControlName="barangay">
+          <option value="">Choose barangay</option>
+          @for (place of barangays; track place.code) {
+            <option>{{ place.barangay }}</option>
+          }
+        </select>
+        @if (form.controls.barangay.touched && form.controls.barangay.invalid) {
+          <small>Enter your barangay.</small>
+        }</label
+      ><button class="location" type="button" (click)="useLocation()">
+        <app-icon name="map" /> Use my current location</button
+      ><label class="upload"
+        >Add photos (optional)<input
+          type="file"
+          accept="image/*"
+          multiple
+          (change)="attach($event)"
+        /><small>Up to 3 images. Photos are previewed in this demonstration.</small></label
+      >
+      <div class="previews">
+        @for (photo of photos(); track photo) {
+          <img [src]="photo" alt="Concern photo preview" />
+        }
+      </div>
+      <p>{{ gps() }}</p>
+    }
+    @if (step() === 3) {
+      <section class="review">
+        <h2>Review before sending</h2>
+        <p>
+          <b>{{ form.controls.category.value }}</b>
+        </p>
+        <p>{{ form.controls.description.value }}</p>
+        <p>{{ form.controls.barangay.value }}, {{ form.controls.location.value }}</p>
+        <p>{{ form.controls.households.value }} households · {{ photos().length }} photos</p>
+      </section>
+      <div class="advisory">
+        Concern classification and priority are reviewed by cooperative staff. This demo does not
+        run a trained model.
+      </div>
+      <button class="submit" type="submit" [disabled]="submitted()">
+        <app-icon name="send" /> {{ submitted() ? 'Report received' : 'Submit Report' }}
+      </button>
+    }
+    @if (step() > 1) {
+      <button type="button" class="location" (click)="step.update(previous)">Back</button>
+    }
+    @if (step() < 3) {
+      <button type="button" class="submit" (click)="next()">Continue</button>
+    }
+    <p role="alert">{{ feedback() }}</p>
+  </form>
+}

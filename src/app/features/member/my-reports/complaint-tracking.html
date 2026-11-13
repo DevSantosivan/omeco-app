@@ -1,0 +1,35 @@
+@if (record(); as item) {
+  <app-page-header
+    [title]="item.category"
+    [description]="item.id + ' · ' + item.status"
+    eyebrow="REPORT TRACKING"
+  />
+  <article class="tracking">
+    <span class="badge">{{ item.priority }} · priority review</span>
+    <h2>{{ item.status === 'Completed' ? 'Your concern is resolved' : 'Your concern status' }}</h2>
+    <p>Follow staff review, dispatch and repair updates here.</p>
+    <h3>Current progress</h3>
+    <p>
+      <b>{{ item.status }}</b>
+    </p>
+    <p>{{ item.repairNotes || 'No repair notes yet.' }}</p>
+    <div class="timeline">
+      @for (event of member.updates(); track event.id) {
+        @if (event.recordId === item.id) {
+          <div>
+            <b>{{ event.action }}</b
+            ><small>{{ event.timestamp }}</small>
+            <p>{{ event.detail }}</p>
+          </div>
+        }
+      }
+    </div>
+    <h3>Reported details</h3>
+    <p>{{ item.description }}</p>
+    <p>{{ item.location }} · {{ item.households }} households</p>
+  </article>
+} @else {
+  <app-page-header title="Report not found" /><a routerLink="/member/reports"
+    >Return to my reports</a
+  >
+}

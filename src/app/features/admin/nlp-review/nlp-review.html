@@ -1,0 +1,181 @@
+<app-page-header
+  title="NLP Classification Review"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Review Filipino and English concern text, inspect simulated categories, and record human decisions."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="kpis">
+    <app-stat-card
+      label="Pending review"
+      [value]="summary().pending.toString()"
+      icon="brain"
+    /><app-stat-card
+      label="Reviewed classifications"
+      [value]="summary().reviewed.toString()"
+      icon="check-circle"
+      tone="green"
+    /><app-stat-card
+      label="Filipino / English"
+      [value]="summary().filipino + ' / ' + summary().english"
+      icon="file"
+    />
+  </section>
+  <div class="workspace-grid">
+    <section class="panel">
+      <h2>
+        Classification review queue <span class="badge">{{ rows().length }}</span>
+      </h2>
+      <div class="toolbar">
+        <input
+          aria-label="Search concern text"
+          placeholder="Search concern text or reference"
+          [value]="query()"
+          (input)="query.set($any($event.target).value)"
+        /><select
+          aria-label="Language"
+          [ngModel]="language()"
+          (change)="language.set($any($event.target).value)"
+        >
+          <option>All</option>
+          <option>Filipino</option>
+          <option>English</option></select
+        ><select
+          aria-label="Review status"
+          [ngModel]="reviewFilter()"
+          (change)="reviewFilter.set($any($event.target).value)"
+        >
+          <option>Pending</option>
+          <option>Reviewed</option>
+          <option>All</option>
+        </select>
+      </div>
+      <div class="queue">
+        @for (item of pager.result().items; track item.id) {
+          <button
+            class="queue-item"
+            type="button"
+            [class.selected]="selected()?.id === item.id"
+            (click)="selectedId.set(item.id)"
+          >
+            <div class="row">
+              <b>{{ item.id }}</b
+              ><span class="badge">{{ item.language }}</span>
+            </div>
+            <p>{{ item.description }}</p>
+            <small>{{ item.category }} · {{ store.confidence(item) }}% simulated confidence</small>
+          </button>
+        } @empty {
+          <div class="empty-inline">No concerns match this review queue.</div>
+        }
+      </div>
+    </section>
+    <div>
+      <section class="panel">
+        @if (selected(); as item) {
+          <h2>
+            Selected concern <span class="badge">{{ item.id }}</span>
+          </h2>
+          <small>ORIGINAL MEMBER TEXT · {{ item.language }}</small>
+          <blockquote class="source-text">{{ item.description }}</blockquote>
+          <div class="metadata">
+            <div>
+              <small>Predicted category · SIMULATED</small><b>{{ item.category }}</b>
+            </div>
+            <div>
+              <small>Illustrative confidence</small
+              ><b>{{ store.confidence(item) }}% · uncalibrated</b>
+            </div>
+          </div>
+          <h3>Preprocessing preview</h3>
+          <p class="mono">{{ tokens(item.description) }}</p>
+          <h3>Classification explanation</h3>
+          <p>
+            The demo associates vocabulary and the seeded incident category. Confidence is a
+            deterministic illustration, not a measured probability. Confirm the actual issue from
+            the original member text.
+          </p>
+          <label class="field"
+            >Reviewed category<select #category class="control" [ngModel]="item.category">
+              @for (name of store.categories(); track name) {
+                <option>{{ name }}</option>
+              }
+            </select></label
+          ><label class="field"
+            >Review note<textarea
+              #note
+              rows="2"
+              placeholder="Reason for approval or override"
+            ></textarea>
+          </label>
+          <div class="actions">
+            <button type="button" class="action" (click)="decide(item.category, note.value)">
+              <app-icon name="check" [size]="18" /> Approve classification</button
+            ><button
+              type="button"
+              class="action secondary"
+              (click)="decide(category.value, note.value)"
+            >
+              Override category
+            </button>
+          </div>
+        } @else {
+          <p>Select a concern from the queue.</p>
+        }
+        @if (message()) {
+          <div class="success" role="status">{{ message() }}</div>
+        }
+      </section>
+      <section class="panel">
+        <h2>Category distribution</h2>
+        <app-chart
+          kind="horizontalBar"
+          title="Category distribution · simulated"
+          [labels]="categoryLabels"
+          [datasets]="categoryDatasets"
+        />
+      </section>
+    </div>
+  </div>
+  <section class="panel">
+    <h2>Classification review history</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Concern</th>
+            <th>Reviewer</th>
+            <th>Recorded decision</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of history(); track item.id) {
+            <tr>
+              <td>{{ item.timestamp | date: 'medium' }}</td>
+              <td>{{ item.incidentId }}</td>
+              <td>{{ item.actor }}</td>
+              <td>
+                {{ item.after }}<small>{{ item.note }}</small>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4">No classification decisions recorded yet.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section></app-data-state
+>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

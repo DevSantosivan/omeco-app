@@ -1,0 +1,68 @@
+<div class="map-shell">
+  <div
+    #mapRoot
+    class="map-canvas"
+    role="region"
+    aria-label="OMECO incident map with barangay boundaries"
+  ></div>
+  <details class="map-layers">
+    <summary><app-icon name="map" [size]="16" /> Layers</summary>
+    <label
+      ><input
+        type="checkbox"
+        [checked]="showBoundaries"
+        (change)="showBoundaries = $any($event.target).checked; toggle()"
+      />
+      Barangay boundaries</label
+    ><label
+      ><input
+        type="checkbox"
+        [checked]="showIncidents"
+        (change)="showIncidents = $any($event.target).checked; toggle()"
+      />
+      Incident clusters</label
+    ><label
+      ><input
+        type="checkbox"
+        [checked]="showCrews"
+        (change)="showCrews = $any($event.target).checked; toggle()"
+      />
+      Simulated crews</label
+    ><label
+      ><input
+        type="checkbox"
+        [checked]="showConnection"
+        (change)="showConnection = $any($event.target).checked; toggle()"
+      />
+      Illustrative connection — not a road route</label
+    ><button type="button" (click)="reset()">Fit available coverage</button>
+  </details>
+  <div class="map-status">
+    @if (geo.loading()) {
+      <span>Loading boundaries…</span>
+    }
+    @if (geo.error()) {
+      <span role="alert"
+        >{{ geo.error() }} <button type="button" (click)="load()">Retry boundaries</button></span
+      >
+    }
+    @if (showConnection) {
+      <span>Illustrative connection — not a road route · no driving ETA</span>
+    }
+  </div>
+  <div class="map-legend incident-legend">
+    <span><i class="critical"></i>Critical</span><span><i class="urgent"></i>Urgent</span
+    ><span><i></i>Routine</span>
+  </div>
+  <details class="risk-legend">
+    <summary>Simulated barangay risk legend</summary>
+    @for (risk of risks; track risk.level) {
+      <span><i [style.background]="risk.color"></i>{{ risk.level }}</span>
+    }
+    <p>
+      Count, recurrence, severity, households and unresolved reports. Fewer than two reports: No
+      data. Risk uses all shared records, independently of marker/page filters. Not validated
+      operational risk.
+    </p>
+  </details>
+</div>

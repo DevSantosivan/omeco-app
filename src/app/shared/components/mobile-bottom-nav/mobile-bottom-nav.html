@@ -1,0 +1,11 @@
+<nav [attr.aria-label]="label">
+  @for (item of items; track item.link) {
+    <a
+      [routerLink]="item.link"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      [routerLinkActiveOptions]="{ exact: item.exact ?? true }"
+      ><app-icon [name]="item.icon" [size]="24" /><span>{{ item.label }}</span></a
+    >
+  }
+</nav>

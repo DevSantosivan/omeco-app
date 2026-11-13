@@ -1,0 +1,88 @@
+<header class="page-heading">
+  <small>MEMBER ADVISORIES</small>
+  <h1>Announcements</h1>
+  <p>Verified service notices and restoration updates for members.</p>
+</header>
+<section class="tools">
+  <app-search-field
+    label="Search announcements"
+    placeholder="Search by title or content..."
+    [value]="search()"
+    (valueChange)="updateSearch($event)"
+  /><app-segmented-filter
+    [options]="options"
+    [value]="filter()"
+    (valueChange)="updateFilter($event)"
+    label="Announcement type"
+  />
+  <div class="list-options">
+    <label
+      >Read status<select
+        [value]="readFilter()"
+        (change)="readFilter.set($any($event.target).value); pager.reset()"
+      >
+        <option>All</option>
+        <option>Unread</option>
+        <option>Read</option>
+      </select></label
+    >
+    <label
+      >Publication order<select
+        [value]="sortOrder()"
+        (change)="sortOrder.set($any($event.target).value); pager.reset()"
+      >
+        <option>Newest</option>
+        <option>Oldest</option>
+      </select></label
+    >
+  </div>
+</section>
+<div class="announcement-list">
+  @for (item of pager.result().items; track item.id) {
+    <article class="announcement" [class.unread]="!announcements.isRead(item.id)">
+      <div class="icon"><app-icon [name]="item.icon" [size]="24" /></div>
+      <div class="copy">
+        <div class="meta">
+          <span class="type">{{ item.type }}</span
+          ><span>{{ item.status }}</span>
+          @if (!announcements.isRead(item.id)) {
+            <span class="unread-dot">Unread</span>
+          }
+        </div>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.summary }}</p>
+        <dl>
+          @if (item.affectedArea) {
+            <div>
+              <dt><app-icon name="map" [size]="15" /> Area</dt>
+              <dd>{{ item.affectedArea }}</dd>
+            </div>
+          }
+          @if (item.schedule) {
+            <div>
+              <dt><app-icon name="calendar" [size]="15" /> Schedule</dt>
+              <dd>{{ item.schedule }}</dd>
+            </div>
+          }
+        </dl>
+        <footer>
+          <span>{{ item.publishedAt }}</span
+          ><a [routerLink]="['/member/updates', item.id]"
+            >View details <app-icon name="chevron-right" [size]="16"
+          /></a>
+        </footer>
+      </div>
+    </article>
+  } @empty {
+    <div class="empty">
+      <app-icon name="search" [size]="32" /><b>No announcements found</b>
+      <p>Try another search or category.</p>
+    </div>
+  }
+</div>
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

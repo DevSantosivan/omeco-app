@@ -1,0 +1,54 @@
+:host {
+  display: block;
+}
+.tracking {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.badge {
+  color: #2563eb;
+  font-size: 11px;
+}
+h2 {
+  font-size: 18px;
+}
+p,
+small {
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.timeline {
+  margin: 22px 0;
+  padding-left: 15px;
+  border-left: 2px solid #dbeafe;
+}
+.timeline div {
+  position: relative;
+  padding: 0 0 20px 10px;
+}
+.timeline div:before {
+  content: '';
+  position: absolute;
+  left: -21px;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  background: #bfdbfe;
+  border-radius: 50%;
+}
+.timeline .done:before {
+  background: #2563eb;
+}
+.timeline b,
+.timeline small {
+  display: block;
+}
+h3 {
+  font-size: 13px;
+}
+a {
+  color: #2563eb;
+}

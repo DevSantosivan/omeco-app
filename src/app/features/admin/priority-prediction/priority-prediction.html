@@ -1,0 +1,186 @@
+<app-page-header
+  title="Priority Prediction & Human Assessment"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Rank incidents by illustrative severity factors, inspect XGBoost-style explanations, and confirm priority."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="kpis">
+    <app-stat-card
+      label="Routine"
+      [value]="summary().routine.toString()"
+      icon="file"
+      tone="green"
+    /><app-stat-card
+      label="Urgent"
+      [value]="summary().urgent.toString()"
+      icon="error"
+      tone="amber"
+    /><app-stat-card
+      label="Critical"
+      [value]="summary().critical.toString()"
+      icon="error"
+      tone="red"
+    />
+  </section>
+  <div class="workspace-grid">
+    <section class="panel">
+      <h2>Incident priority ranking</h2>
+      <div class="toolbar">
+        <input
+          aria-label="Search priorities"
+          placeholder="Search incident or location"
+          [value]="query()"
+          (input)="query.set($any($event.target).value)"
+        /><select
+          aria-label="Priority ranking filter"
+          [ngModel]="filter()"
+          (change)="filter.set($any($event.target).value)"
+        >
+          <option>All</option>
+          <option>Routine</option>
+          <option>Urgent</option>
+          <option>Critical</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank / incident</th>
+              <th>Priority</th>
+              <th>Households</th>
+              <th>Demo score</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of pager.result().items; track item.id; let i = $index) {
+              <tr>
+                <td>
+                  <b>{{ i + 1 }} · {{ item.id }}</b
+                  ><small>{{ item.category }} · {{ item.location }}</small>
+                </td>
+                <td>
+                  <span class="badge" [class]="item.priority.toLowerCase()">{{
+                    item.priority
+                  }}</span>
+                </td>
+                <td>{{ item.households }}</td>
+                <td>{{ store.score(item) }} / 100</td>
+                <td><button type="button" (click)="selectedId.set(item.id)">Assess</button></td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5">No priorities match your filters.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <div>
+      <section class="panel">
+        @if (selected(); as item) {
+          <h2>
+            Priority explanation <span class="badge">{{ item.id }}</span>
+          </h2>
+          <div class="big-value">{{ store.score(item) }}<small> / 100 simulated</small></div>
+          <p>{{ item.description }}</p>
+          <div class="metadata">
+            <div>
+              <small>Household impact</small><b>{{ item.households }} households</b>
+            </div>
+            <div>
+              <small>Review status</small
+              ><b>{{ item.priorityReviewed ? 'Human reviewed' : 'Pending human review' }}</b>
+            </div>
+          </div>
+          <h3>Illustrative scoring factors</h3>
+          <app-chart
+            kind="horizontalBar"
+            title="Illustrative priority factors · not SHAP values"
+            [labels]="['Severity', 'Household impact']"
+            [datasets]="factorDatasets"
+            unit="score"
+          />
+          <div class="notice">
+            XGBoost-style demonstration only. These factors are arithmetic illustrations, not
+            trained inference or actual SHAP/LIME output. Admin makes the final decision.
+          </div>
+          <label class="field"
+            >Final priority<select #priority class="control" [ngModel]="item.priority">
+              <option>Routine</option>
+              <option>Urgent</option>
+              <option>Critical</option>
+            </select></label
+          ><label class="field"
+            >Reason for decision<textarea
+              #reason
+              rows="2"
+              placeholder="Required for an override"
+            ></textarea>
+          </label>
+          <div class="actions">
+            <button class="action" type="button" (click)="decide(priority.value, reason.value)">
+              Confirm / override priority
+            </button>
+          </div>
+        }
+        @if (message()) {
+          <p class="success" role="status">{{ message() }}</p>
+        }
+      </section>
+      <section class="panel">
+        <h2>Priority distribution</h2>
+        <app-chart
+          kind="doughnut"
+          title="Priority distribution · simulated"
+          [labels]="['Routine', 'Urgent', 'Critical']"
+          [datasets]="priorityDatasets"
+        />
+      </section>
+    </div>
+  </div>
+  <section class="panel">
+    <h2>Priority assessment history</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Concern</th>
+            <th>Reviewer</th>
+            <th>Decision and explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of history(); track item.id) {
+            <tr>
+              <td>{{ item.timestamp | date: 'medium' }}</td>
+              <td>{{ item.incidentId }}</td>
+              <td>{{ item.actor }}</td>
+              <td>
+                {{ item.after }}<small>{{ item.note }}</small>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4">No priority assessments recorded yet.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section></app-data-state
+>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

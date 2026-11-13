@@ -1,0 +1,182 @@
+:host {
+  display: block;
+  min-width: 0;
+  height: 100%;
+  .map-shell {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+  }
+  .map-canvas {
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+    background: #e8eff4;
+  }
+  .map-layers {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 500;
+    max-width: min(245px, 70%);
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    box-shadow: 0 3px 10px #102b5020;
+    padding: 8px 10px;
+    summary {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+    }
+    label {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 11px;
+    }
+    input {
+      width: 17px;
+      height: 17px;
+    }
+    button {
+      padding: 8px;
+      border: 0;
+      border-radius: 5px;
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 11px;
+    }
+  }
+  .map-legend {
+    position: absolute;
+    bottom: 23px;
+    right: 8px;
+    z-index: 450;
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    max-width: 90%;
+    padding: 7px;
+    background: var(--surface);
+    border-radius: 6px;
+    font-size: 9px;
+    color: var(--ink);
+    span {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2563eb;
+      &.critical {
+        background: #dc2626;
+      }
+      &.urgent {
+        background: #f59e0b;
+      }
+    }
+  }
+  .risk-legend {
+    position: absolute;
+    right: 8px;
+    bottom: 58px;
+    z-index: 450;
+    width: min(220px, 68%);
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 3px 10px #102b5020;
+    font-size: 10px;
+    summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    span {
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    i {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+    }
+    p {
+      margin: 7px 0 0;
+      color: var(--secondary);
+      font-size: 9px;
+      line-height: 1.4;
+    }
+  }
+  .map-status {
+    position: absolute;
+    top: 50px;
+    right: 45px;
+    z-index: 450;
+    max-width: 65%;
+    span {
+      display: block;
+      background: #fffbeb;
+      color: #8a5b00;
+      font-size: 10px;
+      padding: 8px;
+      border-radius: 7px;
+      margin-bottom: 5px;
+    }
+    button {
+      border: 0;
+      background: transparent;
+      text-decoration: underline;
+      color: #2563eb;
+    }
+  }
+}
+
+.map-shell {
+  .map-layers summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+:host ::ng-deep .leaflet-control-zoom a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+@media (max-width: 600px) {
+  .map-shell {
+    min-height: 0;
+    .map-layers {
+      max-width: 210px;
+    }
+    .map-legend {
+      font-size: 10px;
+      max-width: 82%;
+    }
+  }
+}
+
+:host ::ng-deep .leaflet-control-zoom a {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  background: var(--surface);
+  color: var(--ink);
+}

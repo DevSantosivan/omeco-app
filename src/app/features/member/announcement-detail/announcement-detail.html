@@ -1,0 +1,48 @@
+<a class="back" routerLink="/member/updates"><app-icon name="left-arrow-alt" /> Announcements</a>
+@if (item; as announcement) {
+  <article>
+    <header>
+      <div class="icon"><app-icon [name]="announcement.icon" [size]="28" /></div>
+      <div>
+        <span>{{ announcement.type }}</span>
+        <h1>{{ announcement.title }}</h1>
+        <p>{{ announcement.publishedAt }}</p>
+      </div>
+    </header>
+    <section>
+      <p class="description">{{ announcement.description }}</p>
+      @if (announcement.affectedArea) {
+        <div class="detail">
+          <app-icon name="map" /><span
+            ><small>Affected area</small><b>{{ announcement.affectedArea }}</b></span
+          >
+        </div>
+      }
+      @if (announcement.schedule) {
+        <div class="detail">
+          <app-icon name="calendar" /><span
+            ><small>Schedule</small><b>{{ announcement.schedule }}</b></span
+          >
+        </div>
+      }
+      <div class="detail">
+        <app-icon name="info-circle" /><span
+          ><small>Advisory status</small><b>{{ announcement.status }}</b></span
+        >
+      </div>
+      @if (announcement.lastUpdated) {
+        <div class="detail">
+          <app-icon name="time-five" /><span
+            ><small>Last updated</small><b>{{ announcement.lastUpdated }}</b></span
+          >
+        </div>
+      }
+    </section>
+    <footer>Prototype service announcement. Read state is stored on this device.</footer>
+  </article>
+} @else {
+  <section class="missing">
+    <h1>Announcement not found</h1>
+    <a routerLink="/member/updates">Return to announcements</a>
+  </section>
+}

@@ -1,0 +1,53 @@
+@use '../../../../styles/abstracts/admin-workspace' as admin;
+@include admin.workspace;
+:host .model-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+:host .model-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--ink);
+  app-icon {
+    color: #2563eb;
+  }
+  b {
+    font-size: 14px;
+  }
+  small {
+    font-size: 10px;
+    color: var(--secondary);
+  }
+  &.active {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px #2563eb18;
+  }
+  .readiness-track {
+    height: 5px;
+    width: 100%;
+    background: #e2e8f0;
+    border-radius: 10px;
+    i {
+      display: block;
+      width: 20%;
+      height: 100%;
+      background: #f59e0b;
+    }
+  }
+}
+@media (max-width: 1100px) {
+  :host .model-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 550px) {
+  :host .model-grid {
+    grid-template-columns: 1fr;
+  }
+}

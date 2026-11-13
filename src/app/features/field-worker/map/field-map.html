@@ -1,0 +1,76 @@
+<header>
+  <div>
+    <small>FIELD GIS · SIMULATED POSITIONS</small>
+    <h1>Assignment map</h1>
+    @if (!mapped().length) {
+      <small role="status">No assignments match. Try All work orders.</small>
+    }
+  </div>
+  <label
+    >Work orders<select
+      [value]="scope()"
+      (change)="scope.set($any($event.target).value); selected.set(null)"
+    >
+      <option>Active</option>
+      <option>All</option>
+    </select></label
+  >
+  <label
+    >Priority<select [value]="priority()" (change)="priority.set($any($event.target).value)">
+      <option>All</option>
+      <option>Critical</option>
+      <option>Urgent</option>
+      <option>Routine</option>
+    </select></label
+  >
+</header>
+<app-map-view
+  [cases]="mapped()"
+  [focusCases]="true"
+  [selectedCaseId]="selected()?.id || ''"
+  (selected)="selected.set($event)"
+/>
+@if (selected(); as item) {
+  <button
+    type="button"
+    class="sheet-backdrop"
+    (click)="selected.set(null)"
+    aria-label="Dismiss assignment details"
+  ></button>
+  <section
+    class="assignment-sheet"
+    #sheet
+    role="dialog"
+    aria-modal="true"
+    aria-label="Selected assignment"
+  >
+    <button
+      class="close"
+      type="button"
+      (click)="selected.set(null)"
+      aria-label="Close assignment details"
+    >
+      <app-icon name="x" /></button
+    ><span class="priority" [class]="item.priority.toLowerCase()">{{ item.priority }}</span>
+    <h2>{{ item.id }}</h2>
+    <b>{{ item.category }}</b>
+    <p>{{ item.location }}</p>
+    <p class="description">{{ item.description }}</p>
+    <dl>
+      <div>
+        <dt>Status</dt>
+        <dd>{{ item.status }}</dd>
+      </div>
+      <div>
+        <dt>Affected households</dt>
+        <dd>{{ item.households }}</dd>
+      </div>
+    </dl>
+    <div class="sheet-actions">
+      <a [routerLink]="['/field-worker/assignments', item.id]">View assignment</a>
+      @if (navigation(item); as url) {
+        <a [href]="url" target="_blank" rel="noopener noreferrer">Open external navigation</a>
+      }
+    </div>
+  </section>
+}

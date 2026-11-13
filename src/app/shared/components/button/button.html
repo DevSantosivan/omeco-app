@@ -1,0 +1,17 @@
+<button
+  [type]="type"
+  [disabled]="disabled || loading"
+  [attr.aria-label]="ariaLabel || null"
+  [attr.aria-busy]="loading"
+  [class]="'button button--' + variant + ' button--' + size"
+  [class.button--full]="fullWidth"
+  [class.button--icon-only]="iconOnly"
+>
+  @if (loading) {
+    <span class="button__spinner" aria-hidden="true"></span>
+  }
+  @if (icon) {
+    <span class="button__icon" aria-hidden="true"><app-icon [name]="icon" [size]="18" /></span>
+  }
+  <ng-content />
+</button>

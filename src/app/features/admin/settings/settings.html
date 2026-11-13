@@ -1,0 +1,144 @@
+<app-page-header
+  title="Workspace Settings & Preferences"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Manage the demo profile, display and notification preferences, session controls, and prototype information."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><div class="two-columns">
+    <section class="panel">
+      <h2><app-icon name="user" /> Profile settings</h2>
+      <p>
+        Development profile preferences. Login fixtures remain simulated and are not production
+        security.
+      </p>
+      <label class="field"
+        >Display name<input
+          class="control"
+          [value]="preferences().displayName"
+          (input)="change('displayName', $any($event.target).value)" /></label
+      ><label class="field"
+        >Demo contact email<input
+          class="control"
+          type="email"
+          [value]="preferences().email"
+          (input)="change('email', $any($event.target).value)" /></label
+      ><label class="field"
+        >Interface language preference<select
+          class="control"
+          [ngModel]="preferences().language"
+          (change)="change('language', $any($event.target).value)"
+        >
+          <option>English</option>
+          <option>Filipino</option>
+        </select></label
+      ><small
+        >Language preference is stored for future localization. Current prototype interface text
+        remains English.</small
+      >
+    </section>
+    <section class="panel">
+      <h2><app-icon name="sun" /> Display preferences</h2>
+      <div class="tabs">
+        <button
+          type="button"
+          [class.active]="theme.mode() === 'light'"
+          (click)="theme.set('light')"
+        >
+          Light mode</button
+        ><button type="button" [class.active]="theme.mode() === 'dark'" (click)="theme.set('dark')">
+          Dark mode
+        </button>
+      </div>
+      <label class="check-row"
+        ><input
+          type="checkbox"
+          [checked]="preferences().compact"
+          (change)="change('compact', $any($event.target).checked)"
+        />
+        Compact table density</label
+      >
+      <h3>Notification preferences</h3>
+      <label class="check-row"
+        ><input
+          type="checkbox"
+          [checked]="preferences().notifications"
+          (change)="change('notifications', $any($event.target).checked)"
+        />
+        Enable demo notification center preference</label
+      ><label class="check-row"
+        ><input
+          type="checkbox"
+          [checked]="preferences().dispatchAlerts"
+          (change)="change('dispatchAlerts', $any($event.target).checked)"
+        />
+        Dispatch review alert preference</label
+      >
+      <p>
+        These preferences are stored locally; no push, SMS, or email delivery service is connected.
+      </p>
+    </section>
+  </div>
+  <div class="actions">
+    <button class="action" type="button" (click)="save()">Save preferences</button>
+  </div>
+  @if (message()) {
+    <p class="success" role="status">{{ message() }}</p>
+  }
+  <div class="two-columns">
+    <section class="panel">
+      <h2>Prototype data & session</h2>
+      <div class="metadata">
+        <div>
+          <small>Incident records</small><b>{{ store.incidents().length }} simulated</b>
+        </div>
+        <div><small>Boundary dataset</small><b>139 Occidental Mindoro features</b></div>
+      </div>
+      <p>
+        Incidents, reviews, assignments, repair notes, and audit events persist in this browser
+        tab's session storage. Closing the session resets those records. Theme and display
+        preferences use local storage.
+      </p>
+      <div class="actions">
+        <button class="action secondary" type="button" (click)="confirmReset.set(true)">
+          Restore sample incident data</button
+        ><button class="action danger" type="button" (click)="signOut()">
+          Sign out demo session
+        </button>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Application information</h2>
+      <p>OMECO Member Concern Classification & Temporal Trend Analysis prototype.</p>
+      <div class="metadata">
+        <div><small>Frontend</small><b>Angular 22 standalone</b></div>
+        <div><small>GIS</small><b>Leaflet / OpenStreetMap</b></div>
+        <div><small>Icon system</small><b>Official Boxicons SVG</b></div>
+        <div><small>Model status</small><b>Untrained demonstrations</b></div>
+      </div>
+      <div class="notice">
+        No live OMECO records, live GPS tracking, trained model service, backend authentication, or
+        verified road routing service is connected.
+      </div>
+    </section>
+  </div>
+  @if (confirmReset()) {
+    <div class="dialog-backdrop">
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="reset-title">
+        <h2 id="reset-title">Restore incident demo data?</h2>
+        <p>
+          This replaces this tab's incident changes and audit history with the deterministic
+          simulated seed.
+        </p>
+        <div class="actions">
+          <button class="action secondary" type="button" (click)="confirmReset.set(false)">
+            Cancel</button
+          ><button class="action danger" type="button" (click)="reset()">Restore sample</button>
+        </div>
+      </section>
+    </div>
+  }
+</app-data-state>

@@ -1,0 +1,53 @@
+<section class="profile-header">
+  <div class="avatar">{{ name.slice(0, 2).toUpperCase() }}</div>
+  <h1>{{ name }}</h1>
+  <span>{{ role }}</span>
+  <p>{{ email }}</p>
+</section>
+@if (rows.length) {
+  <section class="card">
+    <h2>Account details</h2>
+    @for (row of rows; track row.label) {
+      <div class="info-row">
+        <app-icon [name]="row.icon" /><span
+          ><small>{{ row.label }}</small
+          ><b>{{ row.value }}</b></span
+        >
+      </div>
+    }
+  </section>
+}
+<section class="card settings">
+  <h2>Preferences</h2>
+  <label
+    ><span><b>Notifications</b><small>Show service and concern updates</small></span
+    ><input
+      type="checkbox"
+      [ngModel]="notifications"
+      (ngModelChange)="notificationsChange.emit($event)" /></label
+  ><label
+    ><span><b>Dark mode</b><small>Use the shared low-light appearance</small></span
+    ><input
+      type="checkbox"
+      [ngModel]="darkMode"
+      (ngModelChange)="darkModeChange.emit($event)" /></label
+  ><button class="save" type="button" (click)="save.emit()">
+    <app-icon name="check" /> Save preferences
+  </button>
+  @if (message) {
+    <p class="message" role="status">{{ message }}</p>
+  }
+</section>
+<section class="card prototype">
+  <app-icon name="info-circle" />
+  <p>
+    <b>Demo account</b
+    ><span
+      >Preferences are stored on this device. Frontend access controls are not production
+      authorization.</span
+    >
+  </p>
+</section>
+<button class="logout" type="button" (click)="logout.emit()">
+  <app-icon name="log-out" /> Sign out
+</button>

@@ -1,0 +1,67 @@
+{
+  "source": "C:/Ivan-dev/PROJECTS/TYPHOONIMPACT-MIN/frontend/public/assets/barangays.geojson",
+  "destination": "public/assets/geo/barangays.geojson",
+  "sourceUnchanged": true,
+  "sha256": "10606e46cd7b4b34a61f4975f3568bb3c11a48fa355cbe3c4d78c3737e0fcfa9",
+  "bytes": 66937084,
+  "type": "FeatureCollection",
+  "features": 42026,
+  "geometryTypes": {
+    "Polygon": 40910,
+    "MultiPolygon": 1116
+  },
+  "coordinates": 243730,
+  "invalidCoordinates": 0,
+  "unclosedRings": 0,
+  "coordinateOrder": "longitude, latitude",
+  "nationwideExtent": [
+    114.27790168600006,
+    4.587390601000038,
+    126.60240763400009,
+    21.121755276000044
+  ],
+  "province": "Occidental Mindoro",
+  "provinceFeatures": 164,
+  "municipalities": [
+    "Abra de Ilog",
+    "Calintaan",
+    "Looc",
+    "Lubang",
+    "Magsaysay",
+    "Mamburao (Capital)",
+    "Paluan",
+    "Rizal",
+    "Sablayan",
+    "San Jose",
+    "Santa Cruz"
+  ],
+  "propertyFields": [
+    "ADM4_EN",
+    "ADM4_PCODE",
+    "ADM3_EN",
+    "ADM3_PCODE",
+    "ADM2_EN"
+  ],
+  "metadataDates": {
+    "date": "2022-11-09",
+    "validOn": "2023-11-06"
+  },
+  "coverageCaveat": "Available dataset coverage is not a verified current cooperative service-territory boundary. No completeness against current PSGC or legal boundary survey is asserted.",
+  "serviceFeatures": 139,
+  "serviceMunicipalities": [
+    "Abra de Ilog",
+    "Calintaan",
+    "Magsaysay",
+    "Mamburao (Capital)",
+    "Paluan",
+    "Rizal",
+    "Sablayan",
+    "San Jose",
+    "Santa Cruz"
+  ],
+  "serviceReference": "https://www.omeco.com.ph/about-us",
+  "excludedProvinceMunicipalities": [
+    "Looc",
+    "Lubang"
+  ]
+}

@@ -1,0 +1,127 @@
+@use '../../../../styles/tokens' as *;
+:host {
+  display: inline-flex;
+  min-width: 0;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  font-family: $font-body;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background 0.16s,
+    border-color 0.16s,
+    color 0.16s,
+    transform 0.16s;
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  &:focus-visible {
+    outline: 3px solid #8bb2ff;
+    outline-offset: 2px;
+  }
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .button__icon {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+  .button__spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  &.button--small {
+    min-height: 30px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  &.button--medium {
+    min-height: 38px;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+  &.button--large {
+    min-height: 46px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  &.button--primary {
+    background: $blue;
+    color: #fff;
+    &:hover:not(:disabled) {
+      background: $hover;
+    }
+  }
+  &.button--secondary {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text);
+    &:hover:not(:disabled) {
+      background: var(--color-bg);
+    }
+  }
+  &.button--outline {
+    background: transparent;
+    border-color: $blue;
+    color: $blue;
+    &:hover:not(:disabled) {
+      background: #2563eb10;
+    }
+  }
+  &.button--ghost {
+    background: transparent;
+    color: var(--color-muted);
+    &:hover:not(:disabled) {
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+  }
+  &.button--danger {
+    background: $critical;
+    color: #fff;
+    &:hover:not(:disabled) {
+      background: #b91c1c;
+    }
+  }
+  &.button--success {
+    background: $success;
+    color: #fff;
+    &:hover:not(:disabled) {
+      background: #128653;
+    }
+  }
+  &.button--full {
+    width: 100%;
+  }
+  &.button--icon-only {
+    width: 38px;
+    padding: 0;
+  }
+  &.button--large.button--icon-only {
+    width: 46px;
+  }
+  &.button--small.button--icon-only {
+    width: 30px;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

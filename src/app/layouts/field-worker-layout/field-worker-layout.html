@@ -1,0 +1,9 @@
+<app-mobile-shell
+  roleLabel="Field Worker App"
+  homeLink="/field-worker/home"
+  profileLink="/field-worker/profile"
+  [nav]="nav"
+  [initials]="auth.session()?.name?.slice(0, 1) || 'O'"
+  [mapMode]="mapMode()"
+  ><router-outlet
+/></app-mobile-shell>

@@ -1,0 +1,59 @@
+@if (record(); as item) {
+  <app-page-header
+    [title]="item.category"
+    [description]="item.id + ' · ' + item.time"
+    eyebrow="CONCERN REVIEW"
+    ><a class="back" routerLink="/admin/complaints"
+      ><app-icon name="left-arrow-alt" /> All concerns</a
+    ></app-page-header
+  >
+  <div class="detail-grid">
+    <section class="card">
+      <h2>Member report</h2>
+      <p>{{ item.description }}</p>
+      <dl>
+        <div>
+          <dt>Member</dt>
+          <dd>{{ item.member }}</dd>
+        </div>
+        <div>
+          <dt>Language</dt>
+          <dd>{{ item.language }} · Filipino and English classification supported</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>{{ item.location }}</dd>
+        </div>
+        <div>
+          <dt>Affected households</dt>
+          <dd>{{ item.households }}</dd>
+        </div>
+        <div>
+          <dt>Channel</dt>
+          <dd>{{ item.channel || 'Member app' }}</dd>
+        </div>
+      </dl>
+    </section>
+    <section class="card">
+      <h2>Classification review</h2>
+      <div class="suggestion">
+        <small>DEMONSTRATION CLASSIFIER · UNTRAINED</small><b>{{ item.category }}</b>
+        <p>
+          Predicted priority <strong>{{ item.priority }}</strong>
+        </p>
+        <small>Review source text and confirm category before acting.</small>
+      </div>
+      <button type="button" (click)="reviewClassification()">Mark classification reviewed</button>
+      <h3>Dispatch authority</h3>
+      <p>
+        Recommendations remain advisory. Dispatcher approval is required before crew assignment.
+      </p>
+      <a routerLink="/admin/dispatch">Open dispatch board <app-icon name="right-arrow-alt" /></a>
+    </section>
+  </div>
+} @else {
+  <app-page-header
+    title="Concern not found"
+    description="The demonstration concern may have changed."
+  /><a routerLink="/admin/complaints">Return to concerns</a>
+}

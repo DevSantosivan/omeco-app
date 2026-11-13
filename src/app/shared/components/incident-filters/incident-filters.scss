@@ -1,0 +1,51 @@
+.filters {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-wrap: wrap;
+  padding: 15px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  label {
+    flex: 1 1 140px;
+    min-width: 0;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--secondary);
+  }
+  select,
+  input {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    min-height: 42px;
+    margin-top: 6px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    font:
+      400 12px 'DM Sans Variable',
+      sans-serif;
+  }
+  button {
+    height: 42px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--canvas);
+    color: #2563eb;
+    font-size: 11px;
+  }
+  @media (max-width: 500px) {
+    label {
+      flex-basis: calc(50% - 10px);
+    }
+    button {
+      width: 100%;
+    }
+  }
+}

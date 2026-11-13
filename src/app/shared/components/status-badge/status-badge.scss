@@ -1,0 +1,22 @@
+:host {
+  display: inline-flex;
+}
+.badge {
+  align-items: center;
+  border-radius: 20px;
+  padding: 4px 8px;
+  font-size: 9px;
+  font-weight: 600;
+  &.critical {
+    background: #fff0ef;
+    color: #c93b36;
+  }
+  &.urgent {
+    background: #fff6e4;
+    color: #ad7410;
+  }
+  &.routine {
+    background: #eaf1ff;
+    color: #2a5fb4;
+  }
+}

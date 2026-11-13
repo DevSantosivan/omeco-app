@@ -1,0 +1,429 @@
+@use '../../../../styles/tokens' as *;
+:host {
+  display: block;
+  .dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    small {
+      color: $blue;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 5px 0;
+      font-size: 28px;
+      letter-spacing: -1px;
+    }
+    p {
+      font-size: 12px;
+      margin: 0;
+      color: var(--secondary);
+    }
+  }
+  .heading-tools {
+    display: flex;
+    gap: 12px;
+    span,
+    b {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 12px;
+    }
+    b {
+      background: #dcfce7;
+      color: #15803d;
+    }
+  }
+  .data-label {
+    color: $muted;
+    font-size: 10px;
+    margin: 14px 0;
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .panel {
+    padding: 17px;
+    border: 1px solid #dce5f4;
+    border-radius: 13px;
+    background: var(--surface);
+    box-shadow: 0 3px 8px #102b5007;
+    min-width: 0;
+  }
+  .panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 13px;
+    h2 {
+      font-size: 15px;
+      margin: 0;
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+    app-icon {
+      color: $blue;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      color: $blue;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  }
+  .intelligence-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 14px;
+    margin: 15px 0;
+  }
+  .trend-chart {
+    width: 100%;
+    height: 205px;
+    text {
+      font-size: 11px;
+      fill: #64748b;
+    }
+  }
+  .muted {
+    color: var(--secondary);
+    font-size: 11px;
+  }
+  .chip {
+    padding: 5px 8px;
+    background: #eff6ff;
+    color: $blue;
+    border-radius: 6px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .trend-panel footer {
+    font-size: 10px;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    i {
+      width: 7px;
+      height: 7px;
+      background: $blue;
+      border-radius: 50%;
+    }
+  }
+  .donut {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 12px auto;
+    display: grid;
+    place-items: center;
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 104px;
+      height: 104px;
+      background: var(--surface);
+      border-radius: 50%;
+      b {
+        font: 700 28px $font-display;
+      }
+      small {
+        color: $muted;
+        font-size: 11px;
+      }
+    }
+  }
+  .legend {
+    display: grid;
+    gap: 7px;
+    font-size: 10px;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+      span {
+        flex: 1;
+      }
+    }
+  }
+  .gis-panel app-map-view {
+    display: block;
+    height: 260px;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+  .gis-panel > small {
+    display: block;
+    margin-top: 8px;
+    font-size: 9px;
+  }
+  .operations-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .table-scroll {
+    overflow: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 10px;
+    th {
+      text-align: left;
+      background: #f1f5fb;
+      color: $muted;
+      padding: 9px;
+    }
+    td {
+      padding: 12px 9px;
+      border-bottom: 1px solid var(--line);
+    }
+    a {
+      color: $blue;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  }
+  .badge {
+    display: inline-flex;
+    padding: 3px 7px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 20px;
+    font-size: 9px;
+    &.critical {
+      color: #dc2626;
+      background: #fee2e2;
+    }
+    &.urgent {
+      color: #b45309;
+      background: #fef3c7;
+    }
+  }
+  .crew-totals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    > div {
+      padding: 15px 4px;
+      background: #eff6ff;
+      border-radius: 8px;
+      text-align: center;
+      b,
+      small {
+        display: block;
+      }
+      b {
+        font: 700 24px $font-display;
+        color: $blue;
+      }
+      small {
+        font-size: 10px;
+        margin-top: 4px;
+      }
+    }
+  }
+  .coverage-label {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0 8px;
+    font-size: 11px;
+  }
+  .meter {
+    height: 9px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    i {
+      display: block;
+      height: 100%;
+      background: $blue;
+      border-radius: 20px;
+    }
+  }
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .queue-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    span {
+      flex: 1;
+      color: $muted;
+    }
+    em {
+      font-style: normal;
+      color: #b45309;
+    }
+  }
+  .primary-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px;
+    margin-top: 12px;
+    background: $blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .service-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    p {
+      font-size: 10px;
+      color: $muted;
+    }
+  }
+  .area-ring {
+    width: 100px;
+    height: 100px;
+    border: 10px solid #16a36a;
+    border-right-color: #f59e0b;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    b {
+      font-size: 25px;
+    }
+    small {
+      font-size: 8px;
+      color: $muted;
+    }
+  }
+  .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 5px;
+    &.blue {
+      background: $blue;
+    }
+    &.amber {
+      background: #f59e0b;
+    }
+    &.green {
+      background: #16a36a;
+    }
+  }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+}
+@media (max-width: 1250px) {
+  :host {
+    .kpis {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .intelligence-grid {
+      grid-template-columns: 1.3fr 1fr;
+    }
+    .gis-panel {
+      grid-column: 1/-1;
+    }
+    .gis-panel app-map-view {
+      height: 230px;
+    }
+    .bottom-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .bottom-grid .panel:last-child {
+      grid-column: 1/-1;
+    }
+  }
+}
+@media (max-width: 700px) {
+  :host {
+    .heading-tools {
+      display: none;
+    }
+    .dashboard-heading h1 {
+      font-size: 24px;
+    }
+    .kpis {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .intelligence-grid,
+    .operations-grid,
+    .bottom-grid {
+      grid-template-columns: 1fr;
+    }
+    .gis-panel,
+    .bottom-grid .panel:last-child {
+      grid-column: auto;
+    }
+    .panel {
+      padding: 14px;
+    }
+  }
+}
+
+:host .activity-panel {
+  margin-top: 18px;
+  .activity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 25px;
+  }
+  .activity-row {
+    display: grid;
+    gap: 4px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    b {
+      font-size: 12px;
+    }
+    span,
+    small {
+      font-size: 10px;
+      color: var(--secondary);
+    }
+  }
+}
+@media (max-width: 650px) {
+  :host .activity-panel .activity-grid {
+    grid-template-columns: 1fr;
+  }
+}

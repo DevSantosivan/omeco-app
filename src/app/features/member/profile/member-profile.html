@@ -1,0 +1,13 @@
+<app-mobile-profile
+  [name]="auth.session()?.name || 'Member'"
+  role="OMECO Member"
+  [email]="auth.session()?.email || ''"
+  [rows]="rows"
+  [notifications]="notifications()"
+  [darkMode]="theme.mode() === 'dark'"
+  [message]="message()"
+  (notificationsChange)="notifications.set($event)"
+  (darkModeChange)="setDarkMode($event)"
+  (save)="save()"
+  (logout)="signOut()"
+/>

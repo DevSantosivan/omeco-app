@@ -1,0 +1,63 @@
+<section class="greeting">
+  <p>Good morning,</p>
+  <h1>{{ auth.session()?.name }}</h1>
+  <span><app-icon name="map" [size]="16" /> Your cooperative service area</span
+  ><small>Member account · Demo environment</small>
+</section>
+<a class="report-cta" routerLink="/member/report"
+  ><span class="cta-icon"><app-icon name="file" [size]="30" /></span>
+  <div>
+    <b>Report a Concern</b>
+    <p>Power outages, line defects,<br />transformer issues, and more.</p>
+  </div>
+  <app-icon name="chevron-right" [size]="26"
+/></a>
+<section class="quick-grid">
+  <a routerLink="/member/updates"
+    ><app-icon name="bolt-circle" [size]="30" /><b>Outage<br />Updates</b></a
+  ><a routerLink="/member/reports"
+    ><app-icon name="file" [size]="30" /><b>My<br />Reports</b></a
+  ><a routerLink="/member/updates"
+    ><app-icon name="help-circle" [size]="30" /><b>Service<br />Information</b></a
+  ><a routerLink="/member/profile"
+    ><app-icon name="support" [size]="30" /><b>Member<br />Support</b></a
+  ><a routerLink="/member/profile"
+    ><app-icon name="user" [size]="30" /><b>My<br />Account</b></a
+  ><a routerLink="/member/updates"
+    ><app-icon name="volume-full" [size]="30" /><b>Announcements</b></a
+  >
+</section>
+<section class="feed-card">
+  <header>
+    <h2><app-icon name="bolt-circle" /> Current Outage Updates</h2>
+    <a routerLink="/member/updates">View all</a>
+  </header>
+  @for (item of member.records().slice(0, 1); track item.id) {
+    <a class="feed-item" [routerLink]="['/member/reports', item.id]"
+      ><span class="status">{{ item.status }}</span>
+      <div>
+        <b>{{ item.category }}</b>
+        <p><app-icon name="map" [size]="15" /> {{ item.location }}</p>
+        <small><app-icon name="time-five" [size]="15" /> {{ item.time }}</small>
+      </div>
+      <app-icon name="chevron-right"
+    /></a>
+  }
+</section>
+<section class="feed-card">
+  <header>
+    <h2><app-icon name="volume-full" /> Announcements</h2>
+    <a routerLink="/member/updates">View all</a>
+  </header>
+  @for (item of announcements.records().slice(0, 2); track item.id) {
+    <a class="feed-item" [routerLink]="['/member/updates', item.id]"
+      ><span class="announcement-icon"><app-icon [name]="item.icon" [size]="30" /></span>
+      <div>
+        <b>{{ item.title }}</b>
+        <p>{{ item.summary }}</p>
+        <small>{{ item.type }} · {{ item.publishedAt }}</small>
+      </div>
+      <app-icon name="chevron-right"
+    /></a>
+  }
+</section>

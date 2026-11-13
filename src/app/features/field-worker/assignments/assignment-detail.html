@@ -1,0 +1,73 @@
+<header class="detail-heading">
+  <a routerLink="/field-worker/assignments" aria-label="Back to assignments"
+    ><app-icon name="left-arrow-alt"
+  /></a>
+  <h1>Work order</h1>
+</header>
+@if (record(); as item) {
+  <article class="incident-card">
+    <div>
+      <h2>{{ item.id }}</h2>
+      <span>{{ item.priority }}</span>
+    </div>
+    <b>{{ item.category }}</b>
+    <p><app-icon name="map" />{{ item.location }}</p>
+    <p>{{ item.assignedCrew }} · {{ item.households }} households</p>
+    <p>Reported {{ item.time }}</p>
+  </article>
+  <article class="card">
+    <h2>Work instructions</h2>
+    <p>{{ item.description }}</p>
+    <p>
+      Assess the site, follow cooperative safety procedures and record work before completion. No
+      member contact data is supplied in this demo.
+    </p>
+    <a routerLink="/field-worker/map">View assignment map</a>
+  </article>
+  <article class="card">
+    <h2>Progress timeline</h2>
+    <ol class="steps">
+      @for (stage of stages; track stage) {
+        <li [class.current]="current() === stage">{{ stage }}</li>
+      }
+    </ol>
+    <p>
+      Current: <b>{{ current() }}</b>
+    </p>
+    <p>{{ item.repairNotes || 'No work notes recorded yet.' }}</p>
+    @if (next()) {
+      <label for="notes">Work notes</label
+      ><textarea
+        id="notes"
+        rows="4"
+        [ngModel]="notes()"
+        (ngModelChange)="notes.set($event)"
+        placeholder="Describe work and safety observations"
+      ></textarea
+      ><button class="advance" type="button" (click)="pending.set(true)">Mark {{ next() }}</button>
+    } @else {
+      <p>Work completed. Thank you.</p>
+    }
+  </article>
+  @if (message()) {
+    <p role="status">{{ message() }}</p>
+  }
+  @if (error()) {
+    <p role="alert">{{ error() }}</p>
+  }
+  @if (pending()) {
+    <section class="confirmation" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div>
+        <h2 id="confirm-title">Confirm {{ next() }}?</h2>
+        <p>This progress update will be visible to the member and dispatcher.</p>
+        <button (click)="pending.set(false)">Cancel</button
+        ><button (click)="save()">Confirm progress</button>
+      </div>
+    </section>
+  }
+} @else {
+  <article class="card">
+    <h2>Work order unavailable</h2>
+    <p>This record is not assigned to your crew.</p>
+  </article>
+}

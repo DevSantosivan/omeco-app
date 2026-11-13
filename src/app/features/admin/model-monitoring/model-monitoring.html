@@ -1,0 +1,152 @@
+<app-page-header
+  title="Model Readiness & Evaluation"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Track integration readiness while keeping unavailable training and evaluation evidence explicit."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="kpis">
+    <app-stat-card
+      label="Model interfaces"
+      [value]="summary().models.toString()"
+      icon="chip"
+    /><app-stat-card
+      label="Trained / validated models"
+      [value]="summary().trained.toString()"
+      detail="No trained model is connected"
+      icon="error"
+      tone="amber"
+    /><app-stat-card
+      label="Demo dataset / reviewed labels"
+      [value]="summary().records + ' / ' + summary().reviewed"
+      icon="file"
+    />
+  </section>
+  <div class="three-columns model-grid">
+    @for (model of store.models; track model.id) {
+      <button
+        class="model-card"
+        type="button"
+        [class.active]="selectedId() === model.id"
+        (click)="selectedId.set(model.id)"
+      >
+        <app-icon name="chip" [size]="27" /><b>{{ model.name }}</b
+        ><small>{{ model.method }}</small
+        ><span class="badge urgent">Untrained · not validated</span>
+        <div class="readiness-track"><i></i></div>
+        <small>UI integration available · training pending</small>
+      </button>
+    }
+  </div>
+  <div class="workspace-grid">
+    <section class="panel">
+      <h2>{{ selected().name }} readiness</h2>
+      <div class="metadata">
+        <div><small>Model version</small><b>Unavailable</b></div>
+        <div><small>Deployment status</small><b>UI demonstration only</b></div>
+        <div><small>Evaluation dataset</small><b>Not validated</b></div>
+        <div><small>Last training run</small><b>Not performed</b></div>
+      </div>
+      <h3>Training and validation requirements</h3>
+      <p>{{ selected().required }}</p>
+      <div class="notice">
+        Accuracy, F1, MAE, RMSE, calibration, and benchmark results are unavailable. No numeric
+        model performance measurements have been fabricated.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Evidence</th>
+              <th>Current readiness</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Labeled demo incidents</td>
+              <td>{{ summary().records }} simulated records only</td>
+            </tr>
+            <tr>
+              <td>Human-reviewed categories</td>
+              <td>{{ summary().reviewed }} prototype decisions / seeded labels</td>
+            </tr>
+            <tr>
+              <td>Training / validation split</td>
+              <td>Unavailable — requires real approved dataset</td>
+            </tr>
+            <tr>
+              <td>Measured metrics</td>
+              <td>Unavailable — no evaluated model</td>
+            </tr>
+            <tr>
+              <td>Version artifact</td>
+              <td>Unavailable — no trained artifact</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Run interface demonstration</h2>
+      <p>
+        Exercise the frontend data path and audit logging. This does not train or call a machine
+        learning model.
+      </p>
+      <label class="field"
+        >Input concern<select
+          class="control"
+          [ngModel]="incidentId()"
+          (change)="incidentId.set($any($event.target).value)"
+        >
+          @for (item of store.incidents(); track item.id) {
+            <option [value]="item.id">{{ item.id }} · {{ item.category }}</option>
+          }
+        </select></label
+      ><button class="action" type="button" [disabled]="running()" (click)="run()">
+        {{ running() ? 'Running UI demonstration…' : 'Run simulated interface' }}
+      </button>
+      @if (message()) {
+        <p class="success" role="status">{{ message() }}</p>
+      }
+      <h3>Research integration boundary</h3>
+      <p>
+        Real inference must be supplied by a separately trained and validated model service. UI
+        readiness is not scientific validation or deployment readiness.
+      </p>
+    </section>
+  </div>
+  <section class="panel">
+    <h2>Simulated inference / interface history</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Interface</th>
+            <th>Concern</th>
+            <th>Output</th>
+            <th>Origin</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of history(); track item.id) {
+            <tr>
+              <td>{{ item.timestamp | date: 'medium' }}</td>
+              <td>{{ item.model }}</td>
+              <td>{{ item.recordId }}</td>
+              <td>{{ item.output }}</td>
+              <td>
+                <span class="badge">{{
+                  item.seeded ? 'Seeded simulation' : 'Actual demo action'
+                }}</span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section></app-data-state
+>

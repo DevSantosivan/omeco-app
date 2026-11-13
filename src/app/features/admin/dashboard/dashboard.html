@@ -1,0 +1,237 @@
+<header class="dashboard-heading">
+  <div>
+    <small>OPERATIONS COMMAND CENTER</small>
+    <h1>Operations Dashboard</h1>
+    <p>Member concerns, outage incidents, and field operations at a glance.</p>
+  </div>
+  <div class="heading-tools">
+    <span><app-icon name="calendar" /> Demo workspace</span
+    ><b><app-icon name="check-circle" /> System online</b>
+  </div>
+</header>
+<div class="data-label">SIMULATED RECORDS · Prototype operational data</div>
+<section class="kpis">
+  <app-stat-card
+    label="Total concerns"
+    [value]="repository.concerns().length.toString()"
+    icon="file"
+    detail="Sample incident records"
+  /><app-stat-card
+    label="Critical incidents"
+    [value]="criticalCount"
+    icon="error"
+    tone="red"
+    detail="Require immediate review"
+  /><app-stat-card
+    label="Ongoing repairs"
+    [value]="ongoing.toString()"
+    icon="wrench"
+    tone="amber"
+    detail="Work in progress"
+  /><app-stat-card
+    label="Restored incidents"
+    [value]="restored.toString()"
+    icon="check-circle"
+    tone="green"
+    detail="Resolved sample records"
+  /><app-stat-card
+    label="Assigned crews"
+    [value]="crewCount.toString()"
+    icon="group"
+    detail="Unique assigned teams"
+  /><app-stat-card
+    label="Affected households"
+    [value]="householdCount"
+    icon="bolt-circle"
+    tone="amber"
+    detail="Reported in sample records"
+  />
+</section>
+<section class="intelligence-grid">
+  <article class="panel trend-panel">
+    <div class="panel-heading">
+      <h2>Concern Trend</h2>
+      <span class="chip">Last 7 days</span>
+    </div>
+    <p class="muted">Illustrative temporal activity</p>
+    <app-mini-chart [points]="trendChartPoints" title="Historical simulated incidents · UTC" />
+    <footer><i></i> Concern volume · simulated series</footer>
+  </article>
+  <article class="panel category-panel">
+    <div class="panel-heading"><h2>Concern Categories</h2></div>
+    <app-chart
+      kind="doughnut"
+      title="Complaint category distribution · simulated"
+      [labels]="categoryLabels"
+      [datasets]="categoryDatasets"
+    />
+    <div class="legend">
+      @for (item of categories; track item.label) {
+        <div>
+          <i [style.background]="item.color"></i><span>{{ item.label }}</span
+          ><b>{{ item.count }}</b>
+        </div>
+      }
+    </div>
+  </article>
+  <article class="panel gis-panel">
+    <div class="panel-heading">
+      <h2>GIS Incident Map</h2>
+      <a routerLink="/admin/map">Full map <app-icon name="right-arrow-alt" [size]="16" /></a>
+    </div>
+    <app-map-view [cases]="repository.concerns()" /><small class="muted"
+      >Demonstration incident locations · OpenStreetMap</small
+    >
+  </article>
+</section>
+<section class="operations-grid">
+  <article class="panel incidents">
+    <div class="panel-heading">
+      <h2>Recent Incidents</h2>
+      <a routerLink="/admin/complaints">View all <app-icon name="right-arrow-alt" [size]="16" /></a>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Concern</th>
+            <th>Location</th>
+            <th>Priority</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of repository.concerns().slice(0, 5); track item.id) {
+            <tr>
+              <td>
+                <a [routerLink]="['/admin/complaints', item.id]">{{ item.id }}</a>
+              </td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.location }}</td>
+              <td>
+                <span class="badge" [class]="item.priority.toLowerCase()">{{ item.priority }}</span>
+              </td>
+              <td>{{ item.status }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+  <article class="panel crews">
+    <div class="panel-heading">
+      <h2><app-icon name="group" /> Crew Availability</h2>
+    </div>
+    <div class="crew-totals">
+      <div>
+        <b>{{ crewCount }}</b
+        ><small>Assigned teams</small>
+      </div>
+      <div>
+        <b>{{ ongoing }}</b
+        ><small>Active repairs</small>
+      </div>
+      <div>
+        <b>{{ restored }}</b
+        ><small>Restored</small>
+      </div>
+    </div>
+    <div class="coverage-label">
+      Crew assignment coverage
+      <b
+        >{{ repository.concerns().length - +awaitingCount }} / {{ repository.concerns().length }}</b
+      >
+    </div>
+    <div class="meter">
+      <i
+        [style.width.%]="
+          ((repository.concerns().length - +awaitingCount) / repository.concerns().length) * 100
+        "
+      ></i>
+    </div>
+    <p class="muted">Dispatcher approval is required for every new assignment.</p>
+  </article>
+</section>
+<section class="bottom-grid">
+  <article class="panel">
+    <div class="panel-heading">
+      <h2><app-icon name="send" /> Dispatch Queue</h2>
+      <span class="chip">{{ awaitingCount }} awaiting</span>
+    </div>
+    @for (item of pendingPreview; track item.id) {
+      @if (!item.assignedCrew) {
+        <div class="queue-row">
+          <b>{{ item.id }}</b
+          ><span>{{ item.location }}</span
+          ><em>{{ item.priority }}</em>
+        </div>
+      }
+    }
+    <a class="primary-action" routerLink="/admin/dispatch"
+      >Review &amp; approve dispatch <app-icon name="right-arrow-alt" [size]="18"
+    /></a>
+  </article>
+  <article class="panel">
+    <div class="panel-heading">
+      <h2><app-icon name="map" /> Service Area Status</h2>
+    </div>
+    <div class="service-summary">
+      <div class="area-ring">
+        <b>{{ areas }}</b
+        ><small>sample areas</small>
+      </div>
+      <div>
+        <p><i class="dot blue"></i> {{ areas }} locations with reports</p>
+        <p><i class="dot amber"></i> {{ ongoing }} ongoing repairs</p>
+        <p><i class="dot green"></i> {{ restored }} restored incidents</p>
+      </div>
+    </div>
+  </article>
+  <article class="panel">
+    <div class="panel-heading">
+      <h2><app-icon name="wrench" /> Repair Summary</h2>
+    </div>
+    <div class="summary-row">
+      <span>New concerns</span><b>{{ awaitingCount }}</b>
+    </div>
+    <div class="summary-row">
+      <span>Repairs ongoing</span><b>{{ ongoing }}</b>
+    </div>
+    <div class="summary-row">
+      <span>Restored</span><b>{{ restored }}</b>
+    </div>
+  </article>
+</section>
+<section class="activity-panel panel">
+  <div class="panel-heading">
+    <h2><app-icon name="list-ul" /> Activity Timeline</h2>
+    <a routerLink="/admin/audit-trail">Full audit trail</a>
+  </div>
+  <div class="activity-grid">
+    <div>
+      <p class="muted">
+        {{ repository.crews().length }} simulated teams · {{ availableCrews }} available
+      </p>
+      @for (crew of repository.crews(); track crew.id) {
+        <div class="activity-row">
+          <b>{{ crew.name }}</b
+          ><span>{{ crew.expertise }}</span
+          ><small>{{ crew.available ? 'Available' : 'On assignment' }}</small>
+        </div>
+      }
+    </div>
+    <div>
+      @for (event of repository.audit().slice(0, 5); track event.id) {
+        <div class="activity-row">
+          <b>{{ event.action }}</b
+          ><span>{{ event.recordId }} · {{ event.actor }}</span
+          ><small
+            >{{ event.timestamp | date: 'short' }} ·
+            {{ event.seeded ? 'Seeded simulation' : 'Demo action' }}</small
+          >
+        </div>
+      }
+    </div>
+  </div>
+</section>

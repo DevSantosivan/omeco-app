@@ -1,0 +1,290 @@
+@use '../../../../styles/tokens' as *;
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 36px;
+  background: linear-gradient(135deg, #deecfc, #f3f6fb 50%, #e5effc);
+}
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  width: min(1150px, 100%);
+  min-height: 690px;
+  border: 4px solid white;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px #102b5020;
+  background: var(--surface);
+  .login-aside {
+    padding: 43px 38px;
+    color: white;
+    background:
+      linear-gradient(120deg, #082848 15%, #102b5099 70%),
+      url('/utility-scene.svg') center/cover;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      text-decoration: none;
+      app-icon {
+        color: #ffc426;
+      }
+      b {
+        font: 700 33px $font-display;
+      }
+      small {
+        display: block;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+    }
+    h2 {
+      font: 700 32px/1.2 $font-display;
+      letter-spacing: -1px;
+      margin: 40px 0 17px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .benefits {
+      display: grid;
+      gap: 18px;
+      margin-top: 30px;
+      > div {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        > app-icon {
+          padding: 12px;
+          border-radius: 12px;
+          background: #ffffff20;
+        }
+        b,
+        small {
+          display: block;
+        }
+        b {
+          font-size: 13px;
+        }
+        small {
+          font-size: 11px;
+          margin-top: 4px;
+          color: #dce9fa;
+        }
+      }
+    }
+  }
+  .login-card {
+    padding: 46px 38px;
+  }
+  .form-intro {
+    h1 {
+      font: 700 30px $font-display;
+      letter-spacing: -1px;
+      margin: 0 0 7px;
+      span {
+        color: $blue;
+      }
+    }
+    p {
+      margin: 0 0 30px;
+      color: #516787;
+      font-size: 14px;
+    }
+  }
+  form {
+    display: grid;
+    gap: 8px;
+    label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #c8d8ef;
+      border-radius: 9px;
+      padding: 0 13px;
+      color: #516787;
+      input {
+        height: 45px;
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 13px;
+      }
+    }
+    .helper {
+      font-size: 10px;
+      color: #64748b;
+    }
+    .error {
+      color: #dc2626;
+      font-size: 11px;
+    }
+    .sign-in {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      min-height: 47px;
+      margin-top: 15px;
+      border: 0;
+      border-radius: 9px;
+      color: white;
+      background: $blue;
+      font-weight: 700;
+      font-size: 16px;
+      &:hover {
+        background: $hover;
+      }
+    }
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0 20px;
+    color: #64748b;
+    font-size: 12px;
+    &:before,
+    &:after {
+      content: '';
+      height: 1px;
+      flex: 1;
+      background: #e2e8f0;
+    }
+  }
+  .accounts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+    button {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 6px;
+      padding: 15px 5px 11px;
+      border: 1px solid #cfe0fb;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: $blue;
+      b {
+        font-size: 15px;
+        color: var(--ink);
+      }
+      small {
+        font-size: 9px;
+        color: #516787;
+        white-space: nowrap;
+      }
+      span {
+        font-size: 10px;
+        padding: 6px;
+        border: 1px solid currentColor;
+        border-radius: 7px;
+        margin-top: 5px;
+      }
+      &:nth-child(2) {
+        color: #07966f;
+        background: #eefbf7;
+        border-color: #ccede2;
+      }
+      &:nth-child(3) {
+        color: #d97706;
+        background: #fffbeb;
+        border-color: #fde5ba;
+      }
+      &:hover {
+        box-shadow: 0 4px 12px #102b5018;
+      }
+    }
+  }
+  .demo-notice {
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    margin-top: 25px;
+    border: 1px solid #cfe0fb;
+    background: #eff6ff;
+    border-radius: 11px;
+    app-icon {
+      color: $blue;
+    }
+    b {
+      font-size: 12px;
+    }
+    p {
+      font-size: 10px;
+      color: #516787;
+      line-height: 1.5;
+      margin: 4px 0 0;
+    }
+  }
+}
+@media (max-width: 760px) {
+  :host {
+    padding: 0;
+    background: var(--canvas);
+    align-items: start;
+  }
+  .login-page {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    border: 0;
+    border-radius: 0;
+    .login-aside {
+      padding: 28px 24px 48px;
+      .brand b {
+        font-size: 26px;
+      }
+      .brand small {
+        font-size: 10px;
+      }
+      h2,
+      p,
+      .benefits {
+        display: none;
+      }
+    }
+    .login-card {
+      position: relative;
+      padding: 27px 22px;
+      margin-top: -22px;
+      border-radius: 22px 22px 0 0;
+      background: var(--surface);
+    }
+    .form-intro h1 {
+      font-size: 26px;
+    }
+    .accounts {
+      grid-template-columns: 1fr;
+      button {
+        flex-direction: row;
+        padding: 12px;
+        gap: 10px;
+        b {
+          font-size: 14px;
+        }
+        small {
+          font-size: 10px;
+        }
+        span {
+          display: none;
+        }
+        app-icon {
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+}

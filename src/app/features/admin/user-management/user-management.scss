@@ -1,0 +1,10 @@
+@use '../../../../styles/abstracts/admin-workspace' as admin;
+@include admin.workspace;
+:host .directory-grid {
+  grid-template-columns: minmax(0, 1.7fr) minmax(290px, 1fr);
+}
+@media (max-width: 1050px) {
+  :host .directory-grid {
+    grid-template-columns: 1fr;
+  }
+}

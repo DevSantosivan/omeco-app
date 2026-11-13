@@ -1,0 +1,44 @@
+<section class="reports-heading">
+  <small>MEMBER CARE</small>
+  <h1>My Reports</h1>
+  <p>Follow the progress of your service concerns.</p>
+</section>
+<div class="report-sheet">
+  <app-search-field
+    label="Search your reports"
+    placeholder="Search by reference or concern..."
+    [value]="search()"
+    (valueChange)="updateSearch($event)"
+  />
+  <app-segmented-filter
+    [options]="options"
+    [value]="filter()"
+    (valueChange)="updateFilter($event)"
+    label="Report status"
+  />
+  @for (item of pager.result().items; track item.id) {
+    <a class="report-card" [routerLink]="['/member/reports', item.id]"
+      ><div class="card-top">
+        <h2>{{ item.id }}</h2>
+        <span [class]="item.priority.toLowerCase()">{{ item.priority }}</span>
+      </div>
+      <b><app-icon name="bolt-circle" [size]="19" /> {{ item.category }}</b>
+      <p><app-icon name="map" [size]="16" /> {{ item.location }}</p>
+      <p><app-icon name="calendar" [size]="16" /> {{ item.time }}</p>
+      <footer>{{ item.status }} <app-icon name="chevron-right" /></footer
+    ></a>
+  }
+  @if (records().length === 0) {
+    <div class="empty">
+      <app-icon name="file" [size]="32" /><b>No reports in this view</b>
+      <p>Try another status filter.</p>
+    </div>
+  }
+</div>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

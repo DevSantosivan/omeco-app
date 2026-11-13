@@ -1,0 +1,37 @@
+.segments {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--surface));
+  button {
+    flex: 1 1 auto;
+    min-width: 70px;
+    min-height: 44px;
+    padding: 6px 4px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+    }
+    &.active {
+      background: var(--color-primary);
+      color: white;
+      box-shadow: 0 3px 10px #2563eb2c;
+    }
+    span {
+      font-size: 10px;
+    }
+  }
+}

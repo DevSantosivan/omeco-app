@@ -1,0 +1,162 @@
+<app-page-header
+  title="Temporal Trends & Forecast Comparison"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Explore time-ordered simulated observations, seasonal patterns, and clearly separated illustrative forecasts."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><section class="panel toolbar">
+    <label class="field"
+      >Municipality<select
+        class="control"
+        [ngModel]="municipality()"
+        (ngModelChange)="municipality.set($event)"
+      >
+        <option>All</option>
+        @for (name of store.municipalities; track name) {
+          <option>{{ name }}</option>
+        }
+      </select></label
+    >
+    <label class="field"
+      >From<input
+        class="control"
+        type="date"
+        [value]="from()"
+        (change)="from.set($any($event.target).value)" /></label
+    ><label class="field"
+      >Through<input
+        class="control"
+        type="date"
+        [value]="through()"
+        (change)="through.set($any($event.target).value)" /></label
+    ><label class="field"
+      >Category<select
+        class="control"
+        [ngModel]="category()"
+        (change)="category.set($any($event.target).value)"
+      >
+        <option>All</option>
+        @for (name of store.categories(); track name) {
+          <option>{{ name }}</option>
+        }
+      </select></label
+    ><label class="field"
+      >Aggregation<select
+        class="control"
+        [ngModel]="period()"
+        (change)="changePeriod($any($event.target).value)"
+      >
+        <option value="day">Daily</option>
+        <option value="week">Weekly</option>
+        <option value="month">Monthly</option>
+      </select></label
+    >
+  </section>
+  <section class="kpis">
+    <app-stat-card
+      label="Historical observations"
+      [value]="summary().observations.toString()"
+      detail="Simulated incident records"
+      icon="line-chart"
+    /><app-stat-card
+      label="Summer / rainy reports"
+      [value]="summary().summer + ' / ' + summary().rainy"
+      detail="Apr–May / Jun–Nov grouping"
+      icon="sun"
+      tone="amber"
+    /><app-stat-card label="Peak reporting period" [value]="summary().peak" icon="calendar" />
+  </section>
+  <app-data-state [empty]="!filtered().length"
+    ><div class="two-columns">
+      <section class="panel">
+        <h2>
+          Observed incident trend <span class="badge">{{ period() }}</span>
+        </h2>
+        <app-mini-chart [points]="points()" title="Historical simulated observations · UTC" />
+        <p>
+          Latest 18 populated periods. Empty periods are not interpolated; use the history table for
+          every available group.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>Forecast comparison</h2>
+        <div class="tabs">
+          @for (name of ['LSTM', 'ARIMA', 'SARIMA']; track name) {
+            <button type="button" [class.active]="method() === name" (click)="method.set(name)">
+              {{ name }}
+            </button>
+          }
+        </div>
+        <app-mini-chart
+          [points]="forecast()"
+          [title]="method() + ' interface · illustrative monthly forecast'"
+        />
+        <p>
+          Blue markers: historical simulated observations. Amber markers: future illustrative
+          values.
+        </p>
+        <div class="notice">
+          No LSTM, ARIMA, or SARIMA model is trained. Future points use a recent mean with fixed
+          demonstration multipliers to illustrate the comparison UI; they are not model inference or
+          accuracy evidence.
+        </div>
+      </section>
+    </div>
+    <div class="two-columns">
+      <section class="panel">
+        <h2>Summer versus rainy season</h2>
+        <app-chart
+          kind="bar"
+          title="Seasonal incident observations · simulated"
+          [labels]="['Summer · Apr–May', 'Rainy · Jun–Nov']"
+          [datasets]="seasonDatasets"
+        />
+        <p>
+          Calendar grouping for demonstration. Seasonal volume is not normalized for differing
+          numbers of days.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>Historical trend table</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Period · UTC</th>
+                <th>Incidents</th>
+                <th>Affected households</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of pager.result().items; track item.date) {
+                <tr>
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.count }}</td>
+                  <td>{{ item.households }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <section class="panel">
+      <h2>Incident categories over time</h2>
+      <app-chart
+        kind="stackedBar"
+        title="Incident categories over time · simulated UTC observations"
+        [labels]="stackedLabels"
+        [datasets]="stackedDatasets"
+      /></section
+  ></app-data-state>
+
+  <app-pagination
+    [page]="pager.result().page"
+    [pageSize]="pager.result().pageSize"
+    [total]="pager.result().totalItems"
+    (changed)="pager.change($event)"
+/></app-data-state>

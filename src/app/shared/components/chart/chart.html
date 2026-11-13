@@ -1,0 +1,17 @@
+<figure>
+  <div class="plot" [class.hidden]="loading || !!error || empty">
+    <canvas #canvas role="img" [attr.aria-label]="title + '. ' + summary"></canvas>
+  </div>
+  @if (loading) {
+    <p role="status">Loading chart…</p>
+  } @else if (error) {
+    <p role="alert">{{ error }}</p>
+  } @else if (empty) {
+    <p>No observations match these filters.</p>
+  }
+  <figcaption>{{ title }}</figcaption>
+  <details>
+    <summary>Accessible data summary</summary>
+    <p>{{ summary }}</p>
+  </details>
+</figure>

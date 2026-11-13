@@ -1,0 +1,34 @@
+.state {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--secondary);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  h2 {
+    font-size: 17px;
+    color: var(--ink);
+  }
+  p {
+    font-size: 13px;
+  }
+  button {
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+  }
+  .skeleton {
+    height: 100px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #e2e8f0, #f8fafc, #e2e8f0);
+    background-size: 200%;
+    animation: pulse 1.5s infinite;
+  }
+}
+@keyframes pulse {
+  to {
+    background-position: -200%;
+  }
+}

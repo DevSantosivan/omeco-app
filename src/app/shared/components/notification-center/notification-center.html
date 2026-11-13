@@ -1,0 +1,24 @@
+@if (preferences.saved().notifications) {
+  <div class="notification-center">
+    <button class="bell" type="button" aria-label="Open notifications" (click)="toggle()">
+      <app-icon name="bell" /> <span>{{ center.unreadCount() }}</span>
+    </button>
+    @if (open()) {
+      <section class="panel" aria-label="Notifications">
+        <header>
+          <div>
+            <strong>Notifications</strong><small>{{ center.unreadCount() }} unread</small>
+          </div>
+          <button type="button" (click)="markRead()">Mark all read</button>
+        </header>
+        @for (notice of center.notices(); track notice) {
+          <article [class.unread]="!notice.read">
+            <b>{{ notice.title }}</b>
+            <p>{{ notice.detail }}</p>
+            <small>{{ notice.time }}</small>
+          </article>
+        }
+      </section>
+    }
+  </div>
+}

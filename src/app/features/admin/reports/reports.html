@@ -1,0 +1,74 @@
+<app-page-header
+  title="Reports & Analytics"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Filter connected incident history, inspect distributions, and export precisely the currently filtered records."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><div class="report-controls">
+    <app-incident-filters
+      [value]="filters()"
+      [dates]="true"
+      [municipalities]="store.municipalities"
+      [places]="store.geography"
+      [categories]="store.categories()"
+      [statuses]="statuses()"
+      (changed)="filters.set($event)"
+    />
+    <div class="actions">
+      <button type="button" class="action" (click)="exportCsv()" [disabled]="!rows().length">
+        <app-icon name="file" [size]="18" /> Export filtered CSV</button
+      ><button type="button" class="action secondary" (click)="print()">Print report</button>
+    </div>
+    @if (message()) {
+      <p class="success" role="status">{{ message() }}</p>
+    }
+  </div>
+  <p class="section-note">
+    Generated {{ generatedAt | date: 'medium' }} · All records simulated · Date filters use
+    inclusive UTC calendar dates.
+  </p>
+  <section class="kpis">
+    <app-stat-card
+      label="Filtered incidents"
+      [value]="summary().incidents.toString()"
+      icon="file"
+    /><app-stat-card
+      label="Affected households"
+      [value]="summary().households.toString()"
+      icon="group"
+    /><app-stat-card
+      label="Critical / resolved"
+      [value]="summary().critical + ' / ' + summary().resolved"
+      icon="check-circle"
+      tone="amber"
+    />
+  </section>
+  <div class="two-columns">
+    <section class="panel">
+      <h2>Monthly report volume</h2>
+      <app-mini-chart [points]="monthly()" title="Monthly simulated incidents · UTC" />
+    </section>
+    <section class="panel">
+      <h2>Category distribution</h2>
+      <app-chart
+        kind="bar"
+        title="Filtered complaint categories · simulated"
+        [labels]="categoryLabels"
+        [datasets]="categoryDatasets"
+      />
+    </section>
+  </div>
+  <section class="panel">
+    <h2>
+      Filtered incident history <span class="badge">{{ rows().length }} records</span>
+    </h2>
+    <app-data-table
+      [columns]="columns"
+      [data]="tableData()"
+      (requested)="tableChange($event)"
+    /></section
+></app-data-state>

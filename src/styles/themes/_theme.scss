@@ -1,0 +1,44 @@
+@use '../tokens' as *;
+:root {
+  color-scheme: light;
+  --color-navy: #{$navy};
+  --color-primary: #{$blue};
+  --color-hover: #{$hover};
+  --color-bg: #{$bg};
+  --color-surface: #{$surface};
+  --color-border: #{$border};
+  --color-text: #{$ink};
+  --color-muted: #{$muted};
+  --color-success: #{$success};
+  --color-warning: #{$warning};
+  --color-critical: #{$critical};
+  --shadow-card: 0 3px 14px #102b500d;
+  --canvas: var(--color-bg);
+  --surface: var(--color-surface);
+  --line: var(--color-border);
+  --ink: var(--color-text);
+  --secondary: var(--color-muted);
+  --border: var(--color-border);
+  --text: var(--color-text);
+  --muted: var(--color-muted);
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-navy: #0b1c32;
+  --color-primary: #6c9cff;
+  --color-hover: #8bb0ff;
+  --color-bg: #0d1726;
+  --color-surface: #152338;
+  --color-border: #293b54;
+  --color-text: #e5edf8;
+  --color-muted: #9aabc1;
+  --color-success: #55c996;
+  --color-warning: #f5bf59;
+  --color-critical: #fb7772;
+  --shadow-card: 0 3px 14px #00000022;
+  --canvas: var(--color-bg);
+  --surface: var(--color-surface);
+  --line: var(--color-border);
+  --ink: var(--color-text);
+  --secondary: var(--color-muted);
+}

@@ -1,0 +1,51 @@
+<section class="field-hero">
+  <p>Good morning,</p>
+  <h1>{{ auth.session()?.name }}</h1>
+  <span>Field Worker · {{ workflow.crewName }}</span>
+  <div class="duty">
+    <b><i></i> On Duty <app-icon name="chevron-right" [size]="16" /></b
+    ><small><app-icon name="map" [size]="15" /> Demo service area</small>
+  </div>
+</section>
+<div class="summary-cards">
+  <article>
+    <app-icon name="file" [size]="28" /><b>{{ workflow.assignments().length }}</b
+    ><small>Assigned</small>
+  </article>
+  <article>
+    <app-icon name="wrench" [size]="28" /><b>{{ active }}</b
+    ><small>In Progress</small>
+  </article>
+  <article>
+    <app-icon name="check-circle" [size]="28" /><b>{{ complete }}</b
+    ><small>Completed</small>
+  </article>
+</div>
+<a class="assignment-banner" routerLink="/field-worker/assignments"
+  ><app-icon name="bolt-circle" [size]="38" />
+  <div>
+    <b>Your assignments</b
+    ><small>{{ workflow.assignments().length }} sample work orders in your area</small>
+  </div>
+  <app-icon name="chevron-right" [size]="26"
+/></a>
+<div class="section-title">
+  <h2>Your assignments</h2>
+  <a routerLink="/field-worker/assignments">View all</a>
+</div>
+@for (item of workflow.assignments().slice(0, 3); track item.id) {
+  <a
+    class="assignment"
+    [class]="item.priority.toLowerCase()"
+    [routerLink]="['/field-worker/assignments', item.id]"
+    ><div class="assignment-top">
+      <b>{{ item.id }}</b
+      ><span>{{ item.priority }}</span>
+    </div>
+    <p>{{ item.category }}</p>
+    <small><app-icon name="map" [size]="16" /> {{ item.location }}</small
+    ><small><app-icon name="time-five" [size]="16" /> {{ item.time }}</small
+    ><app-icon class="chevron" name="chevron-right" [size]="25"
+  /></a>
+}
+<p class="simulation">Simulated assignments · Follow authorized safety procedures.</p>

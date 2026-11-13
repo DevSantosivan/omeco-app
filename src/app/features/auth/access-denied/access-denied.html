@@ -1,0 +1,17 @@
+<main class="access-page">
+  <div class="access-card">
+    <span class="lock">!</span>
+    <p class="eyebrow">ACCESS RESTRICTED</p>
+    <h1>This workspace is for another role.</h1>
+    <p>
+      Sign in with the matching demo account to open this area. Role checks in this demo are for
+      navigation only.
+    </p>
+    <a routerLink="/login"
+      >Choose another account <span><app-icon name="right-arrow-alt" /></span
+    ></a>
+    @if (auth.session(); as session) {
+      <button (click)="auth.signOut()" routerLink="/login">Sign out {{ session.email }}</button>
+    }
+  </div>
+</main>

@@ -1,0 +1,161 @@
+<app-page-header
+  title="Spatial Hotspot & Recurrence Analysis"
+  eyebrow="OMECO / ADMIN WORKSPACE"
+  description="Compare barangay incident concentrations using the actual available GeoJSON, without inventing official boundaries."
+/>
+<div class="demo-ribbon">
+  <app-icon name="info-circle" [size]="16" /> SIMULATED PROTOTYPE · Connected fictional records ·
+  Dispatcher retains final authority
+</div>
+<app-data-state [loading]="store.loading()" [error]="store.error()" (retry)="store.retry()"
+  ><app-incident-filters
+    [value]="filters()"
+    [municipalities]="store.municipalities"
+    [places]="store.geography"
+    [categories]="store.categories()"
+    (changed)="filters.set($event); selectedCode.set('')"
+  />
+  <section class="kpis">
+    <app-stat-card
+      label="Barangays with reports"
+      [value]="summary().barangays.toString()"
+      detail="Grouped by supplied barangay identifier"
+      icon="map"
+    /><app-stat-card
+      label="Recurring barangays"
+      [value]="summary().recurrent.toString()"
+      detail="More than one simulated incident"
+      icon="line-chart"
+      tone="amber"
+    /><app-stat-card
+      label="Filtered incidents"
+      [value]="summary().incidents.toString()"
+      icon="file"
+    />
+  </section>
+  <div class="workspace-grid">
+    <section>
+      <div class="map-panel">
+        <app-map-view
+          [cases]="rows()"
+          [density]="true"
+          [municipality]="filters().municipality"
+          [barangay]="selectedCode() || filters().barangay"
+          (boundarySelected)="selectedCode.set($event.code)"
+        />
+      </div>
+      <div class="notice">
+        Fill represents simulated aggregate risk using frequency, recurrence, severity, unresolved
+        reports and household impact. Risk uses all shared records; marker filters do not change the
+        assessment. Incident bubbles are screen-space clusters. Repeated locations are identified by
+        barangay code, not household identity.
+      </div>
+      <button class="action secondary" type="button" (click)="selectedCode.set('')">
+        Show all filtered boundaries
+      </button>
+    </section>
+    <section class="panel">
+      <h2>Selected barangay</h2>
+      @if (selected(); as area) {
+        <span class="badge">{{ area.code }}</span>
+        <h3>{{ area.barangay }}</h3>
+        <p>
+          <b>Simulated risk: {{ risk.forBarangay(area.code).level }}</b> ·
+          {{ risk.forBarangay(area.code).score ?? 'insufficient data' }}
+        </p>
+        <p>
+          {{ risk.forBarangay(area.code).active }} active incidents ·
+          {{ risk.forBarangay(area.code).recent }}
+        </p>
+        <p>{{ area.municipality }} · Occidental Mindoro</p>
+        <div class="metadata">
+          <div>
+            <small>Incident count</small><b>{{ area.incidents }}</b>
+          </div>
+          <div>
+            <small>Households affected</small><b>{{ area.households }}</b>
+          </div>
+          <div>
+            <small>Critical reports</small><b>{{ area.critical }}</b>
+          </div>
+          <div>
+            <small>Additional recurring reports</small><b>{{ area.recurrence }}</b>
+          </div>
+        </div>
+        <p>
+          {{
+            area.recurrence > 0
+              ? 'Repeated reporting is present in the simulated observation window. Review incident detail before operational decisions.'
+              : 'No recurrence is indicated in the current filtered sample.'
+          }}
+        </p>
+      } @else {
+        <p>Select an available polygon or affected barangay.</p>
+      }
+      <h3>Geographic coverage</h3>
+      <p>
+        139 available polygons across 9 OMECO-listed municipalities. The province-wide source subset
+        also contains 25 Looc/Lubang features that are excluded here. The original nationwide file
+        is preserved; this page renders an unchanged-geometry Occidental Mindoro subset.
+        Completeness against current legal boundaries has not been independently verified.
+      </p>
+    </section>
+  </div>
+  <section class="panel">
+    <h2>Top affected barangays</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Barangay</th>
+            <th>Municipality</th>
+            <th>Incidents</th>
+            <th>Critical</th>
+            <th>Households</th>
+            <th>Recurrence</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (area of pager.result().items; track area.code) {
+            <tr>
+              <td>{{ area.barangay }}</td>
+              <td>{{ area.municipality }}</td>
+              <td>{{ area.incidents }}</td>
+              <td>{{ area.critical }}</td>
+              <td>{{ area.households }}</td>
+              <td>{{ area.recurrence }}</td>
+              <td>
+                <button type="button" (click)="selectedCode.set(area.code)">
+                  Inspect boundary
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="7">No hotspot records match these filters.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section></app-data-state
+>
+
+<section class="panel">
+  <h2>Simulated risk distribution</h2>
+  <app-chart
+    kind="bar"
+    title="Barangay risk counts · not a validated risk model"
+    [labels]="riskLabels"
+    [datasets]="riskDatasets"
+    unit="barangays"
+  />
+</section>
+
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

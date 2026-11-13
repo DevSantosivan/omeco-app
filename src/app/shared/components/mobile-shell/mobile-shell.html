@@ -1,0 +1,10 @@
+<div class="mobile-app" [class.map-mode]="mapMode">
+  <app-mobile-appbar
+    [roleLabel]="roleLabel"
+    [homeLink]="homeLink"
+    [profileLink]="profileLink"
+    [initials]="initials"
+  />
+  <main id="mobile-content"><ng-content /></main>
+  <app-mobile-bottom-nav [items]="nav" [label]="roleLabel + ' navigation'" />
+</div>

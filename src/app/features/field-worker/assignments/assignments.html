@@ -1,0 +1,48 @@
+<header>
+  <small>FIELD OPERATIONS · DEMO</small>
+  <h1>Your assignments</h1>
+  <p>{{ workflow.crewName }} · Only dispatcher-approved work orders appear here.</p>
+</header>
+<section class="filters">
+  <app-search-field
+    label="Search assignments"
+    placeholder="Reference or location"
+    [value]="query()"
+    (valueChange)="updateSearch($event)"
+  />
+  <label
+    >Status<select [ngModel]="status()" (ngModelChange)="status.set($event); pager.reset()">
+      <option>All</option>
+      @for (stage of stages; track stage) {
+        <option>{{ stage }}</option>
+      }
+    </select></label
+  ><label
+    >Priority<select [ngModel]="priority()" (ngModelChange)="priority.set($event); pager.reset()">
+      <option>All</option>
+      <option>Routine</option>
+      <option>Urgent</option>
+      <option>Critical</option>
+    </select></label
+  >
+</section>
+@for (row of pager.result().items; track row.id) {
+  <a class="item" [routerLink]="['/field-worker/assignments', row.id]"
+    ><div>
+      <span>{{ row.priority }}</span
+      ><b>{{ row.id }}</b>
+    </div>
+    <h2>{{ row.category }}</h2>
+    <p><app-icon name="map" />{{ row.location }}</p>
+    <footer>{{ row.households }} households · {{ row.status }}</footer>
+    <strong>View work order <app-icon name="right-arrow-alt" /></strong
+  ></a>
+} @empty {
+  <p role="status">No assigned work matches these filters.</p>
+}
+<app-pagination
+  [page]="pager.result().page"
+  [pageSize]="pager.result().pageSize"
+  [total]="pager.result().totalItems"
+  (changed)="pager.change($event)"
+/>

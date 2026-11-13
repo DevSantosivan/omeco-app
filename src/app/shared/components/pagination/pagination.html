@@ -1,0 +1,12 @@
+<nav aria-label="Record pagination">
+  <span>{{ total() }} records · Page {{ page() }} of {{ pages }}</span
+  ><label
+    >Rows
+    <select [ngModel]="pageSize()" (ngModelChange)="go(1, +$event)">
+      @for (size of [10, 25, 50, 100]; track size) {
+        <option [ngValue]="size">{{ size }}</option>
+      }
+    </select></label
+  ><button type="button" [disabled]="page() <= 1" (click)="go(page() - 1)">Previous</button
+  ><button type="button" [disabled]="page() >= pages" (click)="go(page() + 1)">Next</button>
+</nav>

@@ -1,0 +1,36 @@
+@use '../../../../styles/abstracts/admin-workspace' as admin;
+@include admin.workspace;
+@media print {
+  :host {
+    .report-controls {
+      display: none;
+    }
+    .kpis {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .two-columns {
+      grid-template-columns: 1fr 1fr;
+    }
+    .table-wrap {
+      overflow: visible;
+      table {
+        min-width: 0;
+        font-size: 8px;
+      }
+    }
+    .panel {
+      box-shadow: none;
+      break-inside: avoid;
+    }
+    .demo-ribbon {
+      background: white;
+      color: black;
+    }
+  }
+}
+@media print {
+  :host .table-wrap {
+    max-height: none;
+    overflow: visible;
+  }
+}

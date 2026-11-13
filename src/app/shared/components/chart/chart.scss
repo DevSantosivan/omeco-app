@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  min-width: 0;
+  figure {
+    margin: 0;
+    min-width: 0;
+    .plot {
+      position: relative;
+      height: 260px;
+      min-width: 0;
+      &.hidden {
+        display: none;
+      }
+    }
+    figcaption {
+      font-size: 11px;
+      color: var(--muted, #64748b);
+      text-align: center;
+      margin-top: 8px;
+    }
+    details {
+      font-size: 11px;
+      color: var(--muted, #64748b);
+      margin-top: 8px;
+      p {
+        overflow-wrap: anywhere;
+        line-height: 1.6;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    figure .plot {
+      height: 240px;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@use '../../../../styles/tokens' as *;
+.notification-center {
+  position: relative;
+  .bell {
+    position: relative;
+    border: 0;
+    background: transparent;
+    color: var(--notification-icon-color, var(--ink));
+    font-size: 20px;
+    cursor: pointer;
+    span {
+      position: absolute;
+      top: -4px;
+      right: -7px;
+      background: $blue;
+      color: white;
+      border-radius: 10px;
+      padding: 1px 5px;
+      font-size: 10px;
+    }
+  }
+  .panel {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 12px);
+    right: 0;
+    width: min(340px, calc(100vw - 28px));
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: 0 16px 36px #102b5022;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 4px 12px;
+      small {
+        display: block;
+        color: $muted;
+      }
+      button {
+        border: 0;
+        background: none;
+        color: $blue;
+        cursor: pointer;
+      }
+    }
+    article {
+      padding: 12px;
+      border-radius: 10px;
+      border-top: 1px solid var(--line);
+      &.unread {
+        background: #eff6ff;
+      }
+      p {
+        margin: 5px 0;
+        color: $muted;
+        font-size: 13px;
+      }
+      small {
+        color: $muted;
+      }
+    }
+  }
+}

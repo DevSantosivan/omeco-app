@@ -1,0 +1,1506 @@
+[
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "member/home",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "member/report",
+    "heading": "Report a concern",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "member/reports",
+    "heading": "My Reports",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "member/reports/OC-0A164560",
+    "heading": "Power interruption",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "member/updates",
+    "heading": "Service updates",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "member/profile",
+    "heading": "Ana Mendoza",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/home",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/assignments",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/assignments/OC-0A164560",
+    "heading": "Work order",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/map",
+    "heading": "Assignment map",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/updates",
+    "heading": "Crew updates",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/work-orders",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/repair-progress",
+    "heading": "Your assignments",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/history",
+    "heading": "Completed work",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "field-worker/profile",
+    "heading": "Jose Lim",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/dashboard",
+    "canvases": 2,
+    "heading": "Operations Dashboard",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/complaints",
+    "canvases": 0,
+    "heading": "Complaint Review & GIS Incident Map",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/dispatch",
+    "canvases": 0,
+    "heading": "Crew Dispatch & Approval",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/map",
+    "canvases": 0,
+    "heading": "GIS Incident Command Map",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 0,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/nlp-review",
+    "canvases": 1,
+    "heading": "NLP Classification Review",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 0,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/priority-prediction",
+    "canvases": 2,
+    "heading": "Priority Prediction & Human Assessment",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/temporal-trends",
+    "canvases": 4,
+    "heading": "Temporal Trends & Forecast Comparison",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/spatial-hotspots",
+    "canvases": 1,
+    "heading": "Spatial Hotspot & Recurrence Analysis",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 0,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/restoration-estimation",
+    "canvases": 3,
+    "heading": "Restoration Time Estimation",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/reports",
+    "canvases": 2,
+    "heading": "Reports & Analytics",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/users",
+    "canvases": 0,
+    "heading": "User Management & Demo Accounts",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/model-monitoring",
+    "canvases": 0,
+    "heading": "Model Readiness & Evaluation",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/audit-trail",
+    "canvases": 0,
+    "heading": "Audit Trail & Demo Activity",
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 360
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 1366
+  },
+  {
+    "route": "admin/settings",
+    "canvases": 0,
+    "heading": "Workspace Settings & Preferences",
+    "overflow": false,
+    "width": 1440
+  }
+]

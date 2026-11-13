@@ -1,0 +1,43 @@
+<app-page-header
+  title="Reports and analytics"
+  eyebrow="RESEARCH INSIGHTS"
+  description="Temporal activity and recurrence patterns from illustrative records."
+/>
+<div class="notice">
+  SIMULATED / FORECASTED RESULTS · No actual OMECO statistics or trained models are represented.
+</div>
+<div class="grid">
+  <article class="card">
+    <h2>Seasonal comparison</h2>
+    <p>Sample concern volume by season</p>
+    <div class="compare">
+      <div>
+        <span class="season-label">Summer</span><i style="height: 46%"></i><b>Illustrative</b>
+      </div>
+      <div>
+        <span class="season-label">Rainy season</span><i style="height: 72%"></i><b>Illustrative</b>
+      </div>
+    </div>
+  </article>
+  <article class="card">
+    <h2>Temporal forecast demonstrations</h2>
+    <p>Baseline and recurrent models · not trained</p>
+    <div class="model"><b>LSTM</b><span>Forecast interface ready for API integration</span></div>
+    <div class="model"><b>ARIMA / SARIMA</b><span>Baseline comparison interface</span></div>
+    <div class="model">
+      <b>Prediction range</b><span>Forecasted result · simulated values</span>
+    </div>
+  </article>
+  <article class="card wide">
+    <h2>Incident recurrence and explanation</h2>
+    <p>Location grouping, repeated issue flags, and model explainability are demonstration-only.</p>
+    <div class="chips">
+      <span>Recurring location review</span><span>SHAP feature contribution</span
+      ><span>LIME local explanation</span>
+    </div>
+    <small
+      >Current sample repository contains {{ repository.concerns().length }} simulated
+      concerns.</small
+    >
+  </article>
+</div>

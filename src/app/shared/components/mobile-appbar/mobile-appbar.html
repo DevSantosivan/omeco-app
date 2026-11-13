@@ -1,0 +1,15 @@
+<header class="mobile-appbar">
+  <a class="brand" [routerLink]="homeLink" aria-label="OMECO home"
+    ><app-icon name="bolt-circle" [size]="36" /><span
+      ><strong>OMECO</strong><small>{{ roleLabel }}</small></span
+    ></a
+  >
+  <div class="actions">
+    <app-notification-center /><a
+      class="avatar"
+      [routerLink]="profileLink"
+      aria-label="Open profile"
+      >{{ initials }}</a
+    >
+  </div>
+</header>

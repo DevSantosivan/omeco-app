@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  min-width: 0;
+  figure {
+    margin: 0;
+    svg {
+      width: 100%;
+      display: block;
+      min-height: 180px;
+      line {
+        stroke: var(--line);
+      }
+      text {
+        font:
+          10px 'DM Sans Variable',
+          sans-serif;
+        fill: var(--secondary);
+      }
+      .unit {
+        font-size: 9px;
+      }
+    }
+    figcaption {
+      font-size: 10px;
+      color: var(--secondary);
+      text-align: center;
+      margin: 4px;
+    }
+  }
+}
+:host figure svg .mobile-label {
+  display: none;
+}
+@media (max-width: 650px) {
+  :host figure svg {
+    text {
+      font-size: 21px;
+    }
+    .unit {
+      font-size: 18px;
+    }
+    .desktop-label {
+      display: none;
+    }
+    .mobile-label {
+      display: block;
+      font-size: 21px;
+    }
+  }
+}
